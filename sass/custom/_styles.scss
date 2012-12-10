@@ -1,2 +1,10 @@
 // This File is imported last, and will override other styles in the cascade
 // Add styles here to make changes without digging in too much
+
+/* ----- main layout ----- */
+
+
+html { background: #262C33 url("/images/line-tile.png"); }
+body>header div#logo { margin: 0; }
+body>header h2 { margin-left: 75px; padding-left: 0.5em; }
+div#logo { background: url("/images/scottkillen.png"); height: 75px; width: 75px; }
