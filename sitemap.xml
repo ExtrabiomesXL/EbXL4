@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://extrabiomes.net//blog/2012/12/09/in-the-beginning-dot-dot-dot/</loc>
+        <loc>http://extrabiomes.net/blog/2012/12/09/in-the-beginning-dot-dot-dot/</loc>
         <lastmod>2012-12-10T01:02:07-05:00</lastmod>
     </url>
     <url>
-        <loc>http://extrabiomes.net//blog/2012/12/10/getting-started-with-minecraft-forge/</loc>
+        <loc>http://extrabiomes.net/blog/2012/12/10/getting-started-with-minecraft-forge/</loc>
         <lastmod>2012-12-10T23:53:06-05:00</lastmod>
     </url>
     <url>
-        <loc>http://extrabiomes.net//blog/archives/</loc>
+        <loc>http://extrabiomes.net/blog/archives/</loc>
         <lastmod>2012-12-10T23:53:06-05:00</lastmod>
     </url>
     <url>
-        <loc>http://extrabiomes.net//</loc>
+        <loc>http://extrabiomes.net/</loc>
         <lastmod>2012-12-10T23:53:06-05:00</lastmod>
     </url>
 </urlset>

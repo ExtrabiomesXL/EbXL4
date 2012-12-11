@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Designing Intelligent Design]]></title>
-  <link href="http://extrabiomes.net//atom.xml" rel="self"/>
-  <link href="http://extrabiomes.net//"/>
-  <updated>2012-12-10T23:53:23-05:00</updated>
-  <id>http://extrabiomes.net//</id>
+  <link href="http://extrabiomes.net/atom.xml" rel="self"/>
+  <link href="http://extrabiomes.net/"/>
+  <updated>2012-12-11T00:04:07-05:00</updated>
+  <id>http://extrabiomes.net/</id>
   <author>
     <name><![CDATA[ScottKillen]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Getting Started with Minecraft Forge]]></title>
-    <link href="http://extrabiomes.net//blog/2012/12/10/getting-started-with-minecraft-forge/"/>
+    <link href="http://extrabiomes.net/blog/2012/12/10/getting-started-with-minecraft-forge/"/>
     <updated>2012-12-10T22:50:00-05:00</updated>
-    <id>http://extrabiomes.net//blog/2012/12/10/getting-started-with-minecraft-forge</id>
+    <id>http://extrabiomes.net/blog/2012/12/10/getting-started-with-minecraft-forge</id>
     <content type="html"><![CDATA[<p>Setting up the mod development environment used to be a complicated set of steps, but with recent developments in Minecraft Forge, it has become very easy. <!-- more --></p>
 
 <p>Here are the steps:</p>
@@ -27,7 +27,7 @@
 <li>Go to <a href="http://files.minecraftforge.net/">http://files.minecraftforge.net/</a> and download the latest Forge source (the &#8220;src&#8221; link).</li>
 <li><p>Open the .zip file you downloaded and put the <em>forge</em> directory into the project folder you created, like so:</p>
 
-<p> <img src="http://extrabiomes.net//images/screens/GettingStarted/1.png" alt="forge folder" /></p></li>
+<p> <img src="http://extrabiomes.net/images/screens/GettingStarted/1.png" alt="forge folder" /></p></li>
 <li><p>Enter the forge folder.</p></li>
 <li>Run <code>install.cmd</code> in Windows or <code>install.sh</code> in Linux/MacOS</li>
 </ol>
@@ -39,9 +39,9 @@
   
   <entry>
     <title type="html"><![CDATA[In the beginning...]]></title>
-    <link href="http://extrabiomes.net//blog/2012/12/09/in-the-beginning-dot-dot-dot/"/>
+    <link href="http://extrabiomes.net/blog/2012/12/09/in-the-beginning-dot-dot-dot/"/>
     <updated>2012-12-09T19:32:00-05:00</updated>
-    <id>http://extrabiomes.net//blog/2012/12/09/in-the-beginning-dot-dot-dot</id>
+    <id>http://extrabiomes.net/blog/2012/12/09/in-the-beginning-dot-dot-dot</id>
     <content type="html"><![CDATA[<p>I develop the <a href="http://www.minecraftforum.net/topic/1090288-">ExtrabiomesXL</a> mod for Minecraft. Recently, I realized that to make the mod what it should be, it needed to be rewritten. I created this blog to help you follow along in the process.</p>
 
 <p>I have created a <a href="https://github.com/ScottKillen/ebxl4">repository</a> for the project on <a href="http://github.com">github.com</a>. The code is open source and the idea is that you can clone or fork the project and follow along here. Most modding is not difficult, but it can be complicated. It is my hope that this blog will help you to understand how mods work and, if you&#8217;re into such things, how to write a mod of your own.</p>
