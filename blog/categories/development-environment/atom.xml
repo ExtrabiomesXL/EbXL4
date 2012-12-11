@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Development Environment | Designing Intelligent Design]]></title>
+  <link href="http://extrabiomes.net//blog/categories/development-environment/atom.xml" rel="self"/>
+  <link href="http://extrabiomes.net//"/>
+  <updated>2012-12-10T23:53:23-05:00</updated>
+  <id>http://extrabiomes.net//</id>
+  <author>
+    <name><![CDATA[ScottKillen]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Getting Started with Minecraft Forge]]></title>
+    <link href="http://extrabiomes.net//blog/2012/12/10/getting-started-with-minecraft-forge/"/>
+    <updated>2012-12-10T22:50:00-05:00</updated>
+    <id>http://extrabiomes.net//blog/2012/12/10/getting-started-with-minecraft-forge</id>
+    <content type="html"><![CDATA[<p>Setting up the mod development environment used to be a complicated set of steps, but with recent developments in Minecraft Forge, it has become very easy. <!-- more --></p>
+
+<p>Here are the steps:</p>
+
+<ol>
+<li>Create a folder for your project.</li>
+<li>Go to <a href="http://files.minecraftforge.net/">http://files.minecraftforge.net/</a> and download the latest Forge source (the "src" link).</li>
+<li><p>Open the .zip file you downloaded and put the <em>forge</em> directory into the project folder you created, like so:</p>
+
+<p> <img src="/images/screens/GettingStarted/1.png" alt="forge folder" /></p></li>
+<li><p>Enter the forge folder.</p></li>
+<li>Run <code>install.cmd</code> in Windows or <code>install.sh</code> in Linux/MacOS</li>
+</ol>
+
+
+<p>At this point, Minecraft Forge will take over, downloading everything it needs to decompile Minecraft and set up a development environment.</p>
+]]></content>
+  </entry>
+  
+</feed>
