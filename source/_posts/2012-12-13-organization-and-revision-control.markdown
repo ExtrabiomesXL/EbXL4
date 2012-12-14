@@ -41,7 +41,7 @@ For ExtrabiomesXL 4, we want to use revision control to accomplish the following
   - Maintain a development copy of the code for current in-process work and beta testing.
   - Maintain separate copies of the code for in proces features that we can keep or throw away depending on the success of our work.
 
-Above, each "copy of the code" is called a *branch*. The github repository for ExtrabiomesXL 4 will contain two permanent branches: master and devel. (Actually the github repository will contain four permanent branches. The other two have to do with hosting this web site.) We can also vreate temporary branches as needed for work in progress and merge them into one of the two permanent branches when work is successfuly completed. ``git`` allows us to freely switch between branches within the same folder structure of our project.
+Above, each "copy of the code" is called a *branch*. The github repository for ExtrabiomesXL 4 will contain two permanent branches: master and devel. (Actually the github repository will contain four permanent branches. The other two have to do with hosting this web site.) We can also create temporary branches as needed for work in progress and merge them into one of the two permanent branches when work is successfuly completed. ``git`` allows us to freely switch between branches within the same folder structure of our project.
 
 For those of you wanting to become familiar with ``git`` I hightly recommend the [reference manual](http://git-scm.com/documentation). For those wanting to set up revision control procedures, Benjamin Sandofsky wrote a great article, ["Understanding the Git Workflow"](http://sandofsky.com/blog/git-workflow.html).
 
