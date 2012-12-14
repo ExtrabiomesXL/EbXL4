@@ -24,3 +24,5 @@ Here are the steps:
 At this point, Minecraft Forge will take over, downloading everything it needs to decompile Minecraft and set up a development environment.
 
 **IMPORTANT UPDATE:** There is currently (Forge build #436) a bug in the Forge install script that causes the eclipse project not to be set up properly. The Forge team knows of the bug and is fixing it. For now this install procedure will not work. Stay tuned here for updates.
+
+**IMPORTANT UPDATE #2:** I just tried this with the [latest Forge](http://files.minecraftforge.net/) (build #445) and it works like a charm.
