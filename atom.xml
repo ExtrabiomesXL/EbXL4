@@ -4,7 +4,7 @@
   <title><![CDATA[Designing Intelligent Design]]></title>
   <link href="http://extrabiomes.net/atom.xml" rel="self"/>
   <link href="http://extrabiomes.net/"/>
-  <updated>2012-12-14T01:57:55-05:00</updated>
+  <updated>2012-12-14T03:31:42-05:00</updated>
   <id>http://extrabiomes.net/</id>
   <author>
     <name><![CDATA[ScottKillen]]></name>
@@ -57,7 +57,7 @@
 </ul>
 
 
-<p>Above, each &#8220;copy of the code&#8221; is called a <em>branch</em>. The github repository for ExtrabiomesXL 4 will contain two permanent branches: master and devel. (Actually the github repository will contain four permanent branches. The other two have to do with hosting this web site.) We can also vreate temporary branches as needed for work in progress and merge them into one of the two permanent branches when work is successfuly completed. <code>git</code> allows us to freely switch between branches within the same folder structure of our project.</p>
+<p>Above, each &#8220;copy of the code&#8221; is called a <em>branch</em>. The github repository for ExtrabiomesXL 4 will contain two permanent branches: master and devel. (Actually the github repository will contain four permanent branches. The other two have to do with hosting this web site.) We can also create temporary branches as needed for work in progress and merge them into one of the two permanent branches when work is successfuly completed. <code>git</code> allows us to freely switch between branches within the same folder structure of our project.</p>
 
 <p>For those of you wanting to become familiar with <code>git</code> I hightly recommend the <a href="http://git-scm.com/documentation">reference manual</a>. For those wanting to set up revision control procedures, Benjamin Sandofsky wrote a great article, <a href="http://sandofsky.com/blog/git-workflow.html">&#8220;Understanding the Git Workflow&#8221;</a>.</p>
 
