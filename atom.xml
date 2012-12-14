@@ -4,7 +4,7 @@
   <title><![CDATA[Designing Intelligent Design]]></title>
   <link href="http://extrabiomes.net/atom.xml" rel="self"/>
   <link href="http://extrabiomes.net/"/>
-  <updated>2012-12-14T01:29:21-05:00</updated>
+  <updated>2012-12-14T01:57:55-05:00</updated>
   <id>http://extrabiomes.net/</id>
   <author>
     <name><![CDATA[ScottKillen]]></name>
@@ -20,7 +20,7 @@
     <id>http://extrabiomes.net/blog/2012/12/13/organization-and-revision-control</id>
     <content type="html"><![CDATA[<p>For any complex project, organization is very important. Having a way to get yourself out of a mess can also come in handy. This time we discuss how to set up your code and stay organized, and how to control revisions of your work.  <!-- more --></p>
 
-<p>Your project should be organized in a way that facilitates its goals. For ExtrabiomesXL 4, the pertinent philosopies are:</p>
+<p>Your project should be organized in a way that facilitates its goals. For ExtrabiomesXL 4, the pertinent philosophies are:</p>
 
 <ol>
 <li>Mod code should be separate from protected Mojang code.</li>
