@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Minecraft Forge | Designing Intelligent Design]]></title>
   <link href="http://extrabiomes.net/blog/categories/minecraft-forge/atom.xml" rel="self"/>
   <link href="http://extrabiomes.net/"/>
-  <updated>2012-12-11T01:15:24-05:00</updated>
+  <updated>2012-12-13T22:48:36-05:00</updated>
   <id>http://extrabiomes.net/</id>
   <author>
     <name><![CDATA[ScottKillen]]></name>
@@ -36,6 +36,8 @@
 <p>At this point, Minecraft Forge will take over, downloading everything it needs to decompile Minecraft and set up a development environment.</p>
 
 <p><strong>IMPORTANT UPDATE:</strong> There is currently (Forge build #436) a bug in the Forge install script that causes the eclipse project not to be set up properly. The Forge team knows of the bug and is fixing it. For now this install procedure will not work. Stay tuned here for updates.</p>
+
+<p><strong>IMPORTANT UPDATE #2:</strong> I just tried this with the <a href="http://files.minecraftforge.net/">latest Forge</a> (build #445) and it works like a charm.</p>
 ]]></content>
   </entry>
   
