@@ -1,0 +1,350 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Organization and Revision Control - Designing Intelligent Design</title>
+  <meta name="author" content="ScottKillen">
+
+  
+  <meta name="description" content="For any complex project, organization is very important. Having a way to get yourself out of a mess can also come in handy. This time we discuss how &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://extrabiomes.net/blog/2012/12/13/organization-and-revision-control/">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="/javascripts/ender.js"></script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <link href="http://feeds.feedburner.com/extrabiomes" rel="alternate" title="Designing Intelligent Design" type="application/atom+xml">
+  <link href='http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36916464-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <div id="logo"></div>
+  <h1><a href="/">Designing Intelligent Design</a></h1>
+  
+    <h2>Building ExtrabiomesXL 4</h2>
+  
+  <div class="clear"></div>
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss email">
+  <li><a href="http://feeds.feedburner.com/extrabiomes" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+    <li><a href="http://feedburner.google.com/fb/a/mailverify?uri=extrabiomes&loc=en_US" rel="subscribe-email" title="subscribe via email">Email</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:extrabiomes.net" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title">Organization and Revision Control</h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-13T23:37:00-05:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>For any complex project, organization is very important. Having a way to get yourself out of a mess can also come in handy. This time we discuss how to set up your code and stay organized, and how to control revisions of your work.  <!-- more --></p>
+
+<p>Your project should be organized in a way that facilitates its goals. For ExtrabiomesXL 4, the pertinent philosopies are:</p>
+
+<ol>
+<li>Mod code should be separate from protected Mojang code.</li>
+<li>Mod code should be separate from Minecraft Forge API code.</li>
+<li>Simplification is desirable.</li>
+<li>ExtrabiomesXL is a collaborative project. Its organization should not be an obstacle to others.</li>
+<li>Resources, e.g. artwork, non code config files, should be readily accessible and identifiable.</li>
+<li>All mod files should be located under one central (root) folder to make revision control easier. <em>More on this later.</em></li>
+</ol>
+
+
+<p>As it happens, it is fairly easy to satify all of these philosphies in our project organization. We&#8217;ll get to that in a moment. For now, lets pause and discuss revision control&#8230;</p>
+
+<h2>Revision Control</h2>
+
+<p>Writing software can be a daunting task. Many times you work on something for hours only to find out it doesn&#8217;t work the way you thought it should. When this happens, you may find yourself scratching your head wondering how to get things back to the way that they were. Enter revision control&#8230;</p>
+
+<p>Revision control, also known as version control or source code control, is the management of changes to collections of information. Specifically, revision control software provides an easy way for you to keep track of the changes that happen to your project as you work toward completing it.</p>
+
+<p>To keep it simple, we won&#8217;t get into every aspect of revision control or revision control software. It is enough to say that ExtrabiomesXL is a social open-source project. <code>git</code> is a stable modern full-featured <em>free</em> revision control system, contains many advanced features, and is supported by <a href="http://github.com">github.com</a>, a popular <em>free</em> social coding site. <code>git</code> fits the bill nicely.</p>
+
+<p>Whatever system you use, you should put in the effort to know as much as you can about it. Knowledge of the revision control system can make every difference in a tight spot.</p>
+
+<h2>Revision Control Procedures</h2>
+
+<p>Related to and just as important as project organization is revision control procedures. Strict adherance to revision control procedures directly affects project organization and can help all of your related goals. Likewise, failing to be disciplined with regard to revision control can work to counteract every positive effort in a project. Carefully choose a set of procedures that fits your goals while remaining something you can live with.</p>
+
+<p>For ExtrabiomesXL 4, we want to use revision control to accomplish the following:</p>
+
+<ul>
+<li>Maintain an official copy of the code, offering hotfixes for bugs requiring immediate attention.</li>
+<li>Maintain a development copy of the code for current in-process work and beta testing.</li>
+<li>Maintain separate copies of the code for in proces features that we can keep or throw away depending on the success of our work.</li>
+</ul>
+
+
+<p>Above, each &#8220;copy of the code&#8221; is called a <em>branch</em>. The github repository for ExtrabiomesXL 4 will contain two permanent branches: master and devel. (Actually the github repository will contain four permanent branches. The other two have to do with hosting this web site.) We can also vreate temporary branches as needed for work in progress and merge them into one of the two permanent branches when work is successfuly completed. <code>git</code> allows us to freely switch between branches within the same folder structure of our project.</p>
+
+<p>For those of you wanting to become familiar with <code>git</code> I hightly recommend the <a href="http://git-scm.com/documentation">reference manual</a>. For those wanting to set up revision control procedures, Benjamin Sandofsky wrote a great article, <a href="http://sandofsky.com/blog/git-workflow.html">&#8220;Understanding the Git Workflow&#8221;</a>.</p>
+
+<h2>Return to Organization</h2>
+
+<p>Now that we understand more about the mechanisms involved in keeping our project organized, we can organize our project. As I mentioned, it turns out that there is a simple way to accomplish our goals for this project: Create a folder next to the &#8220;forge&#8221; folder we made <a href="/blog/2012/12/10/getting-started-with-minecraft-forge/">last time</a>.</p>
+
+<p><img src="/images/screens/Organization/1.png" alt="forge folder" /></p>
+
+<p>This solves almost all of our goals stated at the top, except for #5. We can satisfy #5 by navigating into our newest folder and creating a &#8216;src&#8217; folder and any number of other folders to complete the organization of our project.</p>
+
+<h1>Final Thoughts</h1>
+
+<p>I realize that this was a long dry article and reading some of the linked resources about revision control is the definition of tedium. But, trust me on this: <em>All of your efforts will be worth it because big projects (like your future popular Minecraft mod!) live and die by their organization and revision control systems.</em> <strong>Make the investment.</strong></p>
+
+<p>I realize I haven&#8217;t covered the details about how to get your code into a revision control system. The reasons for that are two-fold:</p>
+
+<ol>
+<li>It is super easy.</li>
+<li>If I tell you how to do it and you don&#8217;t read, it will spoil it for you.</li>
+</ol>
+
+
+<p>Besides: you need to pick the system that fits <em>your</em> goals. There is no right choice and if I give you everything, I&#8217;m implying &#8220;one size fits all.&#8221; It doesn&#8217;t.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">ScottKillen</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-12-13T23:37:00-05:00" pubdate data-updated="true">Dec 13<span>th</span>, 2012</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/development-environment/'>Development Environment</a>, <a class='category' href='/blog/categories/revision-control/'>Revision Control</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://extrabiomes.net/blog/2012/12/13/organization-and-revision-control/" data-via="Oncostman" data-counturl="http://extrabiomes.net/blog/2012/12/13/organization-and-revision-control/" >Tweet</a>
+  
+  
+  <div class="g-plusone" data-size="medium"></div>
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left articlenav" href="/blog/2012/12/10/getting-started-with-minecraft-forge/" title="Previous Post: Getting Started with Minecraft Forge">&laquo; Getting Started with Minecraft Forge</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2012/12/13/organization-and-revision-control/">Organization and Revision Control</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/10/getting-started-with-minecraft-forge/">Getting Started with Minecraft Forge</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2012/12/09/in-the-beginning-dot-dot-dot/">In the beginning...</a>
+      </li>
+    
+  </ul>
+</section>
+
+<section>
+  <h1>Latest Tweets</h1>
+  <ul id="tweets">
+    <li class="loading">Status updating...</li>
+  </ul>
+  <script type="text/javascript">
+    $.domReady(function(){
+      getTwitterFeed("Oncostman", 4, false);
+    });
+  </script>
+  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
+  
+    <a href="http://twitter.com/Oncostman" class="twitter-follow-button" data-show-count="false">Follow @Oncostman</a>
+  
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2012 - ScottKillen -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> - Logo icon by <a href="http://biggitybarnes.com/">Greg Barnes</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'extrabiomes';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://extrabiomes.net/blog/2012/12/13/organization-and-revision-control/';
+        var disqus_url = 'http://extrabiomes.net/blog/2012/12/13/organization-and-revision-control/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var script = document.createElement('script'); script.type = 'text/javascript'; script.async = true;
+      script.src = 'https://apis.google.com/js/plusone.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(script, s);
+    })();
+  </script>
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
