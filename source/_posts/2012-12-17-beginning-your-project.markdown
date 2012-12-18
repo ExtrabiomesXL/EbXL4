@@ -10,6 +10,8 @@ categories:
 
 Minecraft was written in the [Java programming language](http://en.wikipedia.org/wiki/Java_(programming_language\)) so your mod is also going to be written in Java. This has certain implications for your work:  <!-- more -->
 
+Actually...[Java isn't *mandatory*](https://twitter.com/minecraftcpw/status/280891535149654016), but since we are keeping to the basics (and because ExtrabiomesXL is Java) we will assume it is for this post.
+
 First, of course, you are going to have to know Java. The good news is that it is not difficult to gain a working knowledge of Java. The bad news is that Java is difficult to master. In addition to learning the Java programming language, I highly recommend reading [Effective Java](http://www.amazon.com/gp/product/0321356683/ref=as_li_ss_tl?ie=UTF8&camp=1789&creative=390957&creativeASIN=0321356683&linkCode=as2&tag=killentime-20) by Joshua Bloch.
 
 Second, while it is possible to develop in Java using a text editor, I find an Integrated Development Environment (IDE) is an invaluable tool. I use [Eclipse](http://www.eclipse.org/downloads/moreinfo/java.php) because it is (1) *free*, (2) supported by Minecraft Coder Pack (MCP) and (3) contains very powerful features.
