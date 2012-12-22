@@ -4,7 +4,7 @@
   <title><![CDATA[Designing Intelligent Design]]></title>
   <link href="http://extrabiomes.net/atom.xml" rel="self"/>
   <link href="http://extrabiomes.net/"/>
-  <updated>2012-12-17T23:35:10-05:00</updated>
+  <updated>2012-12-22T01:26:05-05:00</updated>
   <id>http://extrabiomes.net/</id>
   <author>
     <name><![CDATA[ScottKillen]]></name>
@@ -12,6 +12,36 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Design Goals]]></title>
+    <link href="http://extrabiomes.net/blog/2012/12/21/design-goals/"/>
+    <updated>2012-12-21T21:56:00-05:00</updated>
+    <id>http://extrabiomes.net/blog/2012/12/21/design-goals</id>
+    <content type="html"><![CDATA[<p>Lots of people have asked what is coming in the next version. This time, we get into the design goals for ExtrabiomesXL 4. <!-- more --></p>
+
+<p>When I begin a software project, I like to layout my goals. I list everything I want to do, understanding that it <em>will change</em> because of the <a href="http://en.wikipedia.org/wiki/Project_management_triangle">Project Management Triangle</a>. The PMT summed up is &#8220;Pick two: Fast, Good, Cheap.&#8221; Because of the interplay of these three attributes, project design is constant compromise.</p>
+
+<p>Here is our list for the next version of ExtrabiomesXL:</p>
+
+<ul>
+<li>Rather than override vanilla terrain generation, we need to have a selectable world type, in the same way that players can select &#8220;Large Biome&#8221; or &#8220;Flat&#8221; worlds.</li>
+<li>Expand terrain gen into the full 256 block height along the y-axis. Currently vanilla generation takes place in the lower 128 blocks.</li>
+<li>Change the use of biomes: Currently vanilla biomes determine a lot of things, including climate, terrain altitude and flora (plants and trees). This is fine for vanilla, with only a few types of flora, but we are going to expand the number of floral species. Extrabiomes should not determine flora.</li>
+<li>Add extremely rare biomes (e.g. enchanted groves, wasteland, extreme mountains, glaciers).</li>
+<li>Increase the number of floral species. Nightshade_Proleath bequeathed the <a href="http://www.minecraftforum.net/topic/1519278-">Forgotten Nature</a> mod to us, which includes many, many floral species.</li>
+<li>Create a grove layer, which will overlay the biome layer in terrain generation to shape forests so that they transcend the boundaries of biomes. This will allow experience such as finding a jungle in the lowlands and watching the plants and trees change as you move through different climates and altitudes. Also, within forests, scarce groves with mostly one type of tree can be found. This improves the exploration experience.</li>
+<li>Add blocks to support the above. All blocks have a use which is added via technology tree or integration with other mods. This provides the motivation for exploration.</li>
+<li>Add a simple API, that does not require inclusion in another mod or hard dependencies of any kind.</li>
+<li>Integrate with other mods, with priority given to <a href="http://www.feed-the-beast.com/">FTB</a> mods, via published APIs, while avoiding inclusion of APIs and without hard dpendencies.</li>
+<li>Include more rock types and generate <a href="http://en.wikipedia.org/wiki/Stratum">stratum</a>.</li>
+<li>Improve textures.</li>
+</ul>
+
+
+<p>This is our starting list. It is ambitious and long; however, the secret to good design is to shoot for the stars and accept the Sun.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Beginning Your Project]]></title>
