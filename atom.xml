@@ -4,7 +4,7 @@
   <title><![CDATA[Designing Intelligent Design]]></title>
   <link href="http://extrabiomes.net/atom.xml" rel="self"/>
   <link href="http://extrabiomes.net/"/>
-  <updated>2012-12-23T14:47:17-05:00</updated>
+  <updated>2012-12-23T15:02:09-05:00</updated>
   <id>http://extrabiomes.net/</id>
   <author>
     <name><![CDATA[ScottKillen]]></name>
@@ -36,7 +36,7 @@
 
 <h2>Impact on ExtrabiomesXL 4</h2>
 
-<p>The integration of TerrainControl means a shortening of the development timetable for ExtrabiomesXL 4. Instead of writing a terrain generator from scratch (which would&#8217;ve been my first) I can focus on tweaking this polish generator and adding the content you have all been wanting.</p>
+<p>The integration of TerrainControl means a shortening of the development timetable for ExtrabiomesXL 4. Instead of writing a terrain generator from scratch (which would&#8217;ve been my first) I can focus on tweaking the generator and adding the content you have all been wanting.</p>
 
 <p>I can&#8217;t wait.</p>
 ]]></content>
