@@ -24,6 +24,6 @@ TerrainControl contains more features than I can list. The TerrainControl wiki l
 
 ## Impact on ExtrabiomesXL 4
 
-The integration of TerrainControl means a shortening of the development timetable for ExtrabiomesXL 4. Instead of writing a terrain generator from scratch (which would've been my first) I can focus on tweaking this polish generator and adding the content you have all been wanting.
+The integration of TerrainControl means a shortening of the development timetable for ExtrabiomesXL 4. Instead of writing a terrain generator from scratch (which would've been my first) I can focus on tweaking the generator and adding the content you have all been wanting.
 
 I can't wait.
