@@ -1,0 +1,11 @@
+TerrainControl code generously provided by the TerrainControl team:
+Active staff
+    Khoorn      Maintainer, Coding
+    Rutgerkok   Coding
+    Burckhart   Support, Documentation
+Retired staff	
+    Mysource    Support, Documentation
+    Cayorion    Coding
+Additional Credits	
+    Bucyruss    Creator of the BiomeTerrainMod
+    R-T-B       Creator of PhoenixTerrainMod
