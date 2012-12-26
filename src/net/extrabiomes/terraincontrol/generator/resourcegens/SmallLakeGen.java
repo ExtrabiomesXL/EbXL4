@@ -7,6 +7,8 @@ import net.extrabiomes.terraincontrol.DefaultMaterial;
 import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.TerrainControl;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType;
 
 public class SmallLakeGen extends Resource
 {
@@ -16,6 +18,13 @@ public class SmallLakeGen extends Resource
     private int blockData;
     private int minAltitude;
     private int maxAltitude;
+    private EventType eventType;
+
+    @Override
+    public void process(LocalWorld world, Random random, int chunkX, int chunkZ) {
+        if (TerrainGen.populate(world.getMCWorld().getChunkProvider(), world.getMCWorld(), random, chunkX, chunkZ, false, eventType))
+            super.process(world, random, chunkX, chunkZ);
+    }
 
     @Override
     public void spawn(LocalWorld world, Random rand, int x, int z)
@@ -120,6 +129,9 @@ public class SmallLakeGen extends Resource
         assureSize(5, args);
         blockId = getBlockId(args.get(0));
         blockData = getBlockData(args.get(0));
+        eventType = (blockId == DefaultMaterial.WATER.id) ? EventType.LAKE
+                  : (blockId == DefaultMaterial.LAVA.id) ? EventType.LAVA
+                  : EventType.CUSTOM;
         frequency = getInt(args.get(1), 1, 100);
         rarity = getInt(args.get(2), 1, 100);
         minAltitude = getInt(args.get(3), TerrainControl.worldDepth, TerrainControl.worldHeight);

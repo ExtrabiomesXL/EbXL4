@@ -7,6 +7,8 @@ import java.util.Random;
 import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.TerrainControl;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 
 public class LiquidGen extends Resource
 {
@@ -15,6 +17,12 @@ public class LiquidGen extends Resource
     private List<Integer> sourceBlocks;
     private int minAltitude;
     private int maxAltitude;
+
+    @Override
+    public void process(LocalWorld world, Random random, int chunkX, int chunkZ) {
+        if (TerrainGen.decorate(world.getMCWorld(), random, chunkX, chunkZ, EventType.LAKE))
+            super.process(world, random, chunkX, chunkZ);
+    }
 
     @Override
     public void spawn(LocalWorld world, Random rand, int x, int z)

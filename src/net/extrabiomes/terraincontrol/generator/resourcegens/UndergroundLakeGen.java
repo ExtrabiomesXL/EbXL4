@@ -8,6 +8,8 @@ import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.TerrainControl;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
 import net.extrabiomes.terraincontrol.util.MathHelper;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType;
 
 public class UndergroundLakeGen extends Resource
 {
@@ -15,6 +17,12 @@ public class UndergroundLakeGen extends Resource
     private int maxSize;
     private int minAltitude;
     private int maxAltitude;
+
+    @Override
+    public void process(LocalWorld world, Random random, int chunkX, int chunkZ) {
+        if (TerrainGen.populate(world.getMCWorld().getChunkProvider(), world.getMCWorld(), random, chunkX, chunkZ, false, EventType.CUSTOM))
+            super.process(world, random, chunkX, chunkZ);
+    }
 
     @Override
     public void spawn(LocalWorld world, Random rand, int x, int z)

@@ -4,8 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.extrabiomes.terraincontrol.DefaultMaterial;
 import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
+import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class UnderWaterOreGen extends Resource
 {
@@ -13,6 +16,13 @@ public class UnderWaterOreGen extends Resource
     private List<Integer> sourceBlocks;
     private int size;
     private int blockData;
+    private EventType eventType;
+
+    @Override
+    public void process(LocalWorld world, Random random, int chunkX, int chunkZ) {
+        if (TerrainGen.decorate(world.getMCWorld(), random, chunkX, chunkZ, eventType))
+            super.process(world, random, chunkX, chunkZ);
+    }
 
     @Override
     public void spawn(LocalWorld world, Random rand, int x, int z)
@@ -50,6 +60,9 @@ public class UnderWaterOreGen extends Resource
         assureSize(5, args);
         blockId = getBlockId(args.get(0));
         blockData = getBlockData(args.get(0));
+        eventType = (blockId == DefaultMaterial.CLAY.id) ? EventType.CLAY
+                  : (blockId == DefaultMaterial.SAND.id) ? EventType.SAND
+                  : EventType.CUSTOM;
         size = getInt(args.get(1), 1, 8);
         frequency = getInt(args.get(2), 1, 100);
         rarity = getInt(args.get(3), 1, 100);

@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.extrabiomes.terraincontrol.DefaultMaterial;
 import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.TerrainControl;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 
 public class ReedGen extends Resource
 {
@@ -16,6 +19,13 @@ public class ReedGen extends Resource
     private int minAltitude;
     private int maxAltitude;
     private List<Integer> sourceBlocks;
+    EventType eventType;
+
+    @Override
+    public void process(LocalWorld world, Random random, int chunkX, int chunkZ) {
+        if (TerrainGen.decorate(world.getMCWorld(), random, chunkX, chunkZ, eventType))
+            super.process(world, random, chunkX, chunkZ);
+    }
 
     @Override
     public void spawn(LocalWorld world, Random rand, int x, int z)
@@ -47,6 +57,8 @@ public class ReedGen extends Resource
         }
         blockId = getBlockId(args.get(0));
         blockData = getBlockData(args.get(0));
+        eventType = (blockId == DefaultMaterial.SUGAR_CANE_BLOCK.id)? EventType.REED
+                  : EventType.CUSTOM;
         frequency = getInt(args.get(1), 1, 100);
         rarity = getInt(args.get(2), 1, 100);
         minAltitude = getInt(args.get(3), TerrainControl.worldDepth, TerrainControl.worldHeight);

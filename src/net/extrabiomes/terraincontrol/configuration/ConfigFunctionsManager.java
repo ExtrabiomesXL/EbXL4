@@ -11,6 +11,7 @@ import net.extrabiomes.terraincontrol.generator.resourcegens.CustomObjectGen;
 import net.extrabiomes.terraincontrol.generator.resourcegens.DungeonGen;
 import net.extrabiomes.terraincontrol.generator.resourcegens.GrassGen;
 import net.extrabiomes.terraincontrol.generator.resourcegens.LiquidGen;
+import net.extrabiomes.terraincontrol.generator.resourcegens.ForgeEvent;
 import net.extrabiomes.terraincontrol.generator.resourcegens.OreGen;
 import net.extrabiomes.terraincontrol.generator.resourcegens.PlantGen;
 import net.extrabiomes.terraincontrol.generator.resourcegens.ReedGen;
@@ -37,6 +38,7 @@ public class ConfigFunctionsManager
         put("Dungeon", DungeonGen.class);
         put("Grass", GrassGen.class);
         put("Liquid", LiquidGen.class);
+        put("ForgeEvent", ForgeEvent.class);
         put("Ore", OreGen.class);
         put("Plant", PlantGen.class);
         put("Reed", ReedGen.class);

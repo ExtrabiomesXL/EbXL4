@@ -1,5 +1,7 @@
 package net.extrabiomes.terraincontrol.generator.resourcegens;
 
+import static net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType.DIRT;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -8,6 +10,9 @@ import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.TerrainControl;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
 import net.extrabiomes.terraincontrol.util.MathHelper;
+import net.minecraft.block.Block;
+import net.minecraftforge.event.terraingen.OreGenEvent.GenerateMinable.EventType;
+import net.minecraftforge.event.terraingen.TerrainGen;
 
 public class OreGen extends Resource
 {
@@ -17,9 +22,24 @@ public class OreGen extends Resource
     private int maxAltitude;
     private int maxSize;
     private List<Integer> sourceBlocks;
+    private EventType eventType;
 
-    public int getBlockId() {
-        return blockId;
+    @Override
+    public void process(LocalWorld world, Random random, int chunkX, int chunkZ) {
+        if (TerrainGen.generateOre(world.getMCWorld(), random, null, chunkX, chunkZ, eventType))
+            super.process(world, random, chunkX, chunkZ);
+    }
+
+    private EventType getEventTypeFromBlockID() {
+        if (blockId == Block.dirt.blockID) return EventType.DIRT;
+        if (blockId == Block.gravel.blockID) return EventType.GRAVEL;
+        if (blockId == Block.oreCoal.blockID) return EventType.COAL;
+        if (blockId == Block.oreIron.blockID) return EventType.IRON;
+        if (blockId == Block.oreGold.blockID) return EventType.GOLD;
+        if (blockId == Block.oreRedstone.blockID) return EventType.REDSTONE;
+        if (blockId == Block.oreDiamond.blockID) return EventType.DIAMOND;
+        if (blockId == Block.oreLapis.blockID) return EventType.LAPIS;
+        return EventType.CUSTOM;
     }
 
     @Override
@@ -89,6 +109,7 @@ public class OreGen extends Resource
         }
         blockId = getBlockId(args.get(0));
         blockData = getBlockData(args.get(0));
+        eventType = getEventTypeFromBlockID();
         maxSize = getInt(args.get(1), 1, 128);
         frequency = getInt(args.get(2), 1, 100);
         rarity = getInt(args.get(3), 1, 100);

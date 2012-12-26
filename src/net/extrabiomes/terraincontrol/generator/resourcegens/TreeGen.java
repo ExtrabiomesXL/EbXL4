@@ -8,6 +8,8 @@ import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.TerrainControl;
 import net.extrabiomes.terraincontrol.customobjects.CustomObject;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 
 public class TreeGen extends Resource
 {
@@ -18,22 +20,23 @@ public class TreeGen extends Resource
     @Override
     public void process(LocalWorld world, Random random, int chunkX, int chunkZ)
     {
-        for (int i = 0; i < frequency; i++)
-        {
-            for (int treeNumber = 0; treeNumber < trees.size(); treeNumber++)
+        if (TerrainGen.decorate(world.getMCWorld(), random, chunkX, chunkZ, EventType.TREE))
+            for (int i = 0; i < frequency; i++)
             {
-                if (random.nextInt(100) < treeChances.get(treeNumber))
+                for (int treeNumber = 0; treeNumber < trees.size(); treeNumber++)
                 {
-                    int x = chunkX * 16 + random.nextInt(16) + 8;
-                    int z = chunkZ * 16 + random.nextInt(16) + 8;
-                    if (trees.get(treeNumber).spawnAsTree(world, random, x, z))
+                    if (random.nextInt(100) < treeChances.get(treeNumber))
                     {
-                        // Success, on to the next tree!
-                        break;
+                        int x = chunkX * 16 + random.nextInt(16) + 8;
+                        int z = chunkZ * 16 + random.nextInt(16) + 8;
+                        if (trees.get(treeNumber).spawnAsTree(world, random, x, z))
+                        {
+                            // Success, on to the next tree!
+                            break;
+                        }
                     }
                 }
             }
-        }
     }
 
     @Override

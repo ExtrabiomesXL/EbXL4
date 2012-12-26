@@ -24,6 +24,7 @@ import net.extrabiomes.terraincontrol.generator.resourcegens.GrassGen;
 import net.extrabiomes.terraincontrol.generator.resourcegens.LiquidGen;
 import net.extrabiomes.terraincontrol.generator.resourcegens.OreGen;
 import net.extrabiomes.terraincontrol.generator.resourcegens.PlantGen;
+import net.extrabiomes.terraincontrol.generator.resourcegens.ForgeEvent;
 import net.extrabiomes.terraincontrol.generator.resourcegens.ReedGen;
 import net.extrabiomes.terraincontrol.generator.resourcegens.Resource;
 import net.extrabiomes.terraincontrol.generator.resourcegens.SaplingGen;
@@ -158,6 +159,10 @@ public class BiomeConfig extends ConfigFile
     {
         Resource resource;
 
+        // PrePopulate
+        resource = Resource.createResource(worldConfig, ForgeEvent.class, ForgeEvent.Type.POPULATE_PRE);
+        this.ResourceSequence[this.ResourceCount++] = resource;
+
         // Small lakes
         resource = Resource.createResource(worldConfig, SmallLakeGen.class, DefaultMaterial.WATER.id, TCDefaultValues.SmallLakeWaterFrequency.intValue(), TCDefaultValues.SmallLakeWaterRarity.intValue(), TCDefaultValues.SmallLakeMinAltitude.intValue(), TCDefaultValues.SmallLakeMaxAltitude.intValue());
         this.ResourceSequence[this.ResourceCount++] = resource;
@@ -174,6 +179,14 @@ public class BiomeConfig extends ConfigFile
         resource = Resource.createResource(worldConfig, DungeonGen.class, TCDefaultValues.dungeonFrequency.intValue(), TCDefaultValues.dungeonRarity.intValue(), TCDefaultValues.dungeonMinAltitude.intValue(), this.worldConfig.WorldHeight);
         this.ResourceSequence[this.ResourceCount++] = resource;
 
+        // PreDecorate
+        resource = Resource.createResource(worldConfig, ForgeEvent.class, ForgeEvent.Type.DECORATE_PRE);
+        this.ResourceSequence[this.ResourceCount++] = resource;
+
+        // PreOre
+        resource = Resource.createResource(worldConfig, ForgeEvent.class, ForgeEvent.Type.ORE_PRE);
+        this.ResourceSequence[this.ResourceCount++] = resource;
+       
         // Dirt
         resource = Resource.createResource(worldConfig, OreGen.class, DefaultMaterial.DIRT.id, TCDefaultValues.dirtDepositSize.intValue(), TCDefaultValues.dirtDepositFrequency.intValue(), TCDefaultValues.dirtDepositRarity.intValue(), TCDefaultValues.dirtDepositMinAltitude.intValue(), this.worldConfig.WorldHeight, DefaultMaterial.STONE.id);
         this.ResourceSequence[this.ResourceCount++] = resource;
@@ -217,6 +230,10 @@ public class BiomeConfig extends ConfigFile
             resource = Resource.createResource(worldConfig, OreGen.class, DefaultMaterial.EMERALD_ORE.id, TCDefaultValues.emeraldDepositSize.intValue(), TCDefaultValues.emeraldDepositFrequency.intValue(), TCDefaultValues.emeraldDepositRarity.intValue(), TCDefaultValues.emeraldDepositMinAltitude.intValue(), this.worldConfig.WorldHeight / 4, DefaultMaterial.STONE.id);
             this.ResourceSequence[this.ResourceCount++] = resource;
         }
+
+        // PostOre
+        resource = Resource.createResource(worldConfig, ForgeEvent.class, ForgeEvent.Type.ORE_POST);
+        this.ResourceSequence[this.ResourceCount++] = resource;
 
         // Under water sand
         resource = Resource.createResource(worldConfig, UnderWaterOreGen.class, DefaultMaterial.SAND.id, TCDefaultValues.waterSandDepositSize.intValue(), TCDefaultValues.waterSandDepositFrequency.intValue(), TCDefaultValues.waterSandDepositRarity.intValue(), DefaultMaterial.DIRT.id, DefaultMaterial.GRASS.id);
@@ -337,12 +354,24 @@ public class BiomeConfig extends ConfigFile
             this.ResourceSequence[this.ResourceCount++] = resource;
         }
 
+        // PostDecorate
+        resource = Resource.createResource(worldConfig, ForgeEvent.class, ForgeEvent.Type.DECORATE_POST);
+        this.ResourceSequence[this.ResourceCount++] = resource;
+
         // Water source
         resource = Resource.createResource(worldConfig, LiquidGen.class, DefaultMaterial.WATER.id, TCDefaultValues.waterSourceDepositFrequency.intValue(), TCDefaultValues.waterSourceDepositRarity.intValue(), TCDefaultValues.waterSourceDepositMinAltitude.intValue(), this.worldConfig.WorldHeight, DefaultMaterial.STONE.id);
         this.ResourceSequence[this.ResourceCount++] = resource;
 
         // Lava source
         resource = Resource.createResource(worldConfig, LiquidGen.class, DefaultMaterial.LAVA.id, TCDefaultValues.lavaSourceDepositFrequency.intValue(), TCDefaultValues.lavaSourceDepositRarity.intValue(), TCDefaultValues.lavaSourceDepositMinAltitude.intValue(), this.worldConfig.WorldHeight, DefaultMaterial.STONE.id);
+        this.ResourceSequence[this.ResourceCount++] = resource;
+
+        // PostPopulate
+        resource = Resource.createResource(worldConfig, ForgeEvent.class, ForgeEvent.Type.POPULATE_POST);
+        this.ResourceSequence[this.ResourceCount++] = resource;
+
+        // ModGenerate
+        resource = Resource.createResource(worldConfig, ForgeEvent.class, ForgeEvent.Type.MOD_GENERATE);
         this.ResourceSequence[this.ResourceCount++] = resource;
 
     }

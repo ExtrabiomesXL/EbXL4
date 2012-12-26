@@ -7,12 +7,15 @@ import java.util.Random;
 import net.extrabiomes.terraincontrol.DefaultMaterial;
 import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 
 public class GrassGen extends Resource
 {
     private int blockId;
     private int blockData;
     private List<Integer> sourceBlocks;
+    private EventType eventType;
 
     @Override
     public void load(List<String> args) throws InvalidResourceException
@@ -23,6 +26,9 @@ public class GrassGen extends Resource
         }
         blockId = getBlockId(args.get(0));
         blockData = getInt(args.get(1), 0, 16);
+        eventType = (blockId == DefaultMaterial.LONG_GRASS.id) ? EventType.GRASS
+                  : (blockId == DefaultMaterial.DEAD_BUSH.id) ? EventType.DEAD_BUSH
+                  : EventType.CUSTOM;
         frequency = getInt(args.get(2), 1, 500);
         rarity = getInt(args.get(3), 1, 100);
         sourceBlocks = new ArrayList<Integer>();
@@ -41,6 +47,7 @@ public class GrassGen extends Resource
     @Override
     public void process(LocalWorld world, Random random, int chunkX, int chunkZ)
     {
+        if (TerrainGen.decorate(world.getMCWorld(), random, chunkX, chunkZ, eventType))
         for (int t = 0; t < frequency; t++)
         {
             if (random.nextInt(100) >= rarity)

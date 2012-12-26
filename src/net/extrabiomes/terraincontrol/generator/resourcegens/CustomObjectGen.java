@@ -9,6 +9,8 @@ import net.extrabiomes.terraincontrol.TerrainControl;
 import net.extrabiomes.terraincontrol.customobjects.CustomObject;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
 import net.extrabiomes.terraincontrol.util.Txt;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 
 public class CustomObjectGen extends Resource
 {
@@ -46,10 +48,11 @@ public class CustomObjectGen extends Resource
     @Override
     public void process(LocalWorld world, Random random, int chunkX, int chunkZ)
     {
-        for (CustomObject object : objects)
-        {
-            object.process(world, random, chunkX, chunkZ);
-        }
+        if (TerrainGen.decorate(world.getMCWorld(), random, chunkX, chunkZ, EventType.CUSTOM))
+            for (CustomObject object : objects)
+            {
+                object.process(world, random, chunkX, chunkZ);
+            }
     }
 
     @Override

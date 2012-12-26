@@ -6,11 +6,19 @@ import java.util.Random;
 import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.TerrainControl;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType;
 
 public class DungeonGen extends Resource
 {
     private int minAltitude;
     private int maxAltitude;
+
+    @Override
+    public void process(LocalWorld world, Random random, int chunkX, int chunkZ) {
+        if (TerrainGen.populate(world.getMCWorld().getChunkProvider(), world.getMCWorld(), random, chunkX, chunkZ, false, EventType.DUNGEON))
+            super.process(world, random, chunkX, chunkZ);
+    }
 
     @Override
     public void load(List<String> args) throws InvalidResourceException

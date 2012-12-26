@@ -56,21 +56,6 @@ public class ObjectSpawner
             if (res instanceof SmallLakeGen && hasGeneratedAVillage)
                 continue;
             world.setChunksCreations(false);
-            //EBXL
-            if (res instanceof OreGen) {
-                if (!hasBegunOreGen) {
-                    hasBegunOreGen = true;
-                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Pre(world.getMCWorld(), rand, chunkX, chunkZ));
-                }
-                if (!sendOreEvent((OreGen)res, world.getMCWorld(), rand, chunkX, chunkZ))
-                    continue;
-            } else {
-                if (hasBegunOreGen) {
-                    hasBegunOreGen = false;
-                    MinecraftForge.ORE_GEN_BUS.post(new OreGenEvent.Post(world.getMCWorld(), rand, chunkX, chunkZ));
-                }
-            }
-            //===
             res.process(world, rand, chunkX, chunkZ);
         }
 
@@ -83,31 +68,6 @@ public class ObjectSpawner
 
         if (this.worldSettings.isDeprecated)
             this.worldSettings = this.worldSettings.newSettings;
-    }
-    
-    private boolean sendOreEvent(OreGen res, World mcWorld, Random rand, int chunkX, int chunkZ) {
-        final GenerateMinable.EventType type;
-        int blockID = res.getBlockId();
-        
-        if (blockID == Block.dirt.blockID) {
-            type = DIRT;
-        } else if (blockID == Block.gravel.blockID) {
-            type = GRAVEL;
-        } else if (blockID == Block.oreCoal.blockID) {
-            type = COAL;
-        } else if (blockID == Block.oreIron.blockID) {
-            type = IRON;
-        } else if (blockID == Block.oreGold.blockID) {
-            type = GOLD;
-        } else if (blockID == Block.oreRedstone.blockID) {
-            type = REDSTONE;
-        } else if (blockID == Block.oreDiamond.blockID) {
-            type = DIAMOND;
-        } else if (blockID == Block.oreLapis.blockID) {
-            type = LAPIS;
-        } else type = CUSTOM;
-        
-        return TerrainGen.generateOre(mcWorld, rand, null, chunkX, chunkZ, type);
     }
 
     protected void placeSnowAndIce(int chunkX, int chunkZ)

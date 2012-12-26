@@ -3,13 +3,23 @@ package net.extrabiomes.terraincontrol.generator.resourcegens;
 import java.util.List;
 import java.util.Random;
 
+import net.extrabiomes.terraincontrol.DefaultMaterial;
 import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.exception.InvalidResourceException;
+import net.minecraftforge.event.terraingen.TerrainGen;
+import net.minecraftforge.event.terraingen.DecorateBiomeEvent.Decorate.EventType;
 
 public class AboveWaterGen extends Resource
 {
     private int blockId;
     private int blockData;
+    private EventType eventType;
+
+    @Override
+    public void process(LocalWorld world, Random random, int chunkX, int chunkZ) {
+        if (TerrainGen.decorate(world.getMCWorld(), random, chunkX, chunkZ, eventType))
+            super.process(world, random, chunkX, chunkZ);
+    }
 
     @Override
     public void load(List<String> args) throws InvalidResourceException
@@ -21,6 +31,8 @@ public class AboveWaterGen extends Resource
 
         blockId = getBlockId(args.get(0));
         blockData = getBlockData(args.get(0));
+        eventType = blockId == DefaultMaterial.WATER_LILY.id ? EventType.LILYPAD
+                  : EventType.CUSTOM;
         frequency = getInt(args.get(1), 1, 100);
         rarity = getInt(args.get(2), 1, 100);
     }
