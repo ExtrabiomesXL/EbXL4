@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>In the beginning... - Designing Intelligent Design</title>
+  <title>Community Participation - Designing Intelligent Design</title>
   <meta name="author" content="ScottKillen">
 
   
-  <meta name="description" content="I develop the ExtrabiomesXL mod for Minecraft. Recently, I realized that to make the mod what it should be, it needed to be rewritten. I created this &hellip;">
+  <meta name="description" content="Integration of the new terrain generator continues at a steady pace. I have decided to do something a bit unconventional. I spent quite a bit of time &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://extrabiomes.net/blog/2012/12/09/in-the-beginning-dot-dot-dot/">
+  <link rel="canonical" href="http://extrabiomes.net/blog/2012/12/31/community-participation/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -86,7 +86,7 @@
   <header>
     
       
-        <h1 class="entry-title">In the Beginning...</h1>
+        <h1 class="entry-title">Community Participation</h1>
       
     
     
@@ -103,16 +103,38 @@
   
 
 
-<time datetime="2012-12-09T19:32:00-05:00" pubdate data-updated="true">Dec 9<span>th</span>, 2012</time>
+<time datetime="2012-12-31T17:31:00-05:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>I develop the <a href="http://www.minecraftforum.net/topic/1090288-">ExtrabiomesXL</a> mod for Minecraft. Recently, I realized that to make the mod what it should be, it needed to be rewritten. I created this blog to help you follow along in the process.</p>
+<div class="entry-content"><p>Integration of the new terrain generator continues at a steady pace. I have decided to do something a bit unconventional.  <!-- more --></p>
 
-<p>I have created a <a href="https://github.com/ScottKillen/ebxl4">repository</a> for the project on <a href="http://github.com">github.com</a>. The code is open source and the idea is that you can clone or fork the project and follow along here. Most modding is not difficult, but it can be complicated. It is my hope that this blog will help you to understand how mods work and, if you&#8217;re into such things, how to write a mod of your own.</p>
+<p>I spent quite a bit of time working on adding support for Minecraft Forge terrain generation hooks and the Forge Mod Loader GameRegistry generateWorld to my fork of Terrain Control. My plan was to isolate and repackage the core TerrainControl mod. I had mixed feelings about this, but as I posted last time, Khoorn, the author had given me permission.</p>
+
+<p>Khoorn, or Wickth as he is known on GitHub, saw what I had been doing to my copy of TerrainControl and he encouraged me to submit my changes to the TerrainControl project itself. His encouragement reminded me why I love opensource software, and ringing in my ears was the philosophy MisterFiber and I adopted months ago with regard to ExtrabiomesXL: &#8220;Be compatible with as many mods as possible.&#8221; So, I spent a bit more time reworking my changes. (The TerrainControl core must be compatible with craftbukkit and thus contains no references to vanilla minecraft objects.) I submitted my changes, which were almost immediately included in the TerrainControl project. Since then, rutgerkok, a co-contributor to the TerrainControl project has optimized the code I submitted as part of an expansion of TerrainControl&#8217;s own event system. This reminded me of a cool property of good opensource projects: egoless development. Khoorn invited me to be a part. Rutgerkok embraced my work and optimized it. I recognized rutgerkok&#8217;s skill and superior knowledge of TerrainControl. The point is, this only worked because each of us focused on making a good product by doing our best work to that end and not allowing our egos to take over. It is a beautiful thing.</p>
+
+<h2>The Impact on ExtrabiomesXL</h2>
+
+<p>ExtrabiomesXL will ship with the TerrainControl core <em>included</em>. If you also install the TerrainControl mod, the two will share code. This works because of how well TerrainControl has been designed and it means that players will be able to have the best of both worlds, no pun intended.</p>
+
+<p>ExtrabiomesXL will tweak the settings of TerrainControl to provide its own content and biomes.</p>
+
+<p>This also changes our <a href="/blog/2012/12/21/design-goals/">design goals</a>:</p>
+
+<ul>
+<li>TerrainControl accomplishes the first four goals on the list, <em>out of the box</em>.</li>
+<li>We will no longer have a need for a &#8220;grove layer&#8221; as TerrainControl can already accomplish the grove layer&#8217;s purpose pretty well.</li>
+<li>We will provide a GUI at world creation for simple tweaking.</li>
+<li>We will provide the ability to load &#8220;world packs&#8221;, kind of like texture packs, so that users can choose a world &#8220;style&#8221; on the world creation screen.</li>
+</ul>
+
+
+<p>That last goal brings me to a request&#8211;a mission for you, if you will: This last goal opens up a potential niche for budding world creators. Those who know how TerrainControl configurations files work will be able to create world styles for other players. If any of you suspect you might like to fill this market, I recommend learning TerrainControl <a href="https://github.com/Wickth/TerrainControl/wiki">here</a>.</p>
+
+<p>I had all of this on my mind a few days ago when a team member sent me a cool idea for a new type of world he wanted to see. Being able to say &#8220;The code in version four will <em>already</em> do that.&#8221; gave me a great feeling. This has the potential to be very big.</p>
 </div>
 
 
@@ -135,12 +157,12 @@
   
 
 
-<time datetime="2012-12-09T19:32:00-05:00" pubdate data-updated="true">Dec 9<span>th</span>, 2012</time>
+<time datetime="2012-12-31T17:31:00-05:00" pubdate data-updated="true">Dec 31<span>st</span>, 2012</time>
       
 
 <span class="categories">
   
-    <a class='category' href='/blog/categories/blog-news/'>Blog News</a>
+    <a class='category' href='/blog/categories/design/'>Design</a>, <a class='category' href='/blog/categories/minecraft-community/'>Minecraft Community</a>
   
 </span>
 
@@ -149,7 +171,7 @@
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://extrabiomes.net/blog/2012/12/09/in-the-beginning-dot-dot-dot/" data-via="Oncostman" data-counturl="http://extrabiomes.net/blog/2012/12/09/in-the-beginning-dot-dot-dot/" >Tweet</a>
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://extrabiomes.net/blog/2012/12/31/community-participation/" data-via="Oncostman" data-counturl="http://extrabiomes.net/blog/2012/12/31/community-participation/" >Tweet</a>
   
   
   <div class="g-plusone" data-size="medium"></div>
@@ -162,8 +184,8 @@
     
     <p class="meta">
       
+        <a class="basic-alignment left articlenav" href="/blog/2012/12/23/terrain-generation/" title="Previous Post: Terrain Generation">&laquo; Terrain Generation</a>
       
-        <a class="basic-alignment right articlenav" href="/blog/2012/12/10/getting-started-with-minecraft-forge/" title="Next Post: Getting Started with Minecraft Forge">Getting Started with Minecraft Forge &raquo;</a>
       
     </p>
   </footer>
@@ -245,8 +267,8 @@
       
         
         // var disqus_developer = 1;
-        var disqus_identifier = 'http://extrabiomes.net/blog/2012/12/09/in-the-beginning-dot-dot-dot/';
-        var disqus_url = 'http://extrabiomes.net/blog/2012/12/09/in-the-beginning-dot-dot-dot/';
+        var disqus_identifier = 'http://extrabiomes.net/blog/2012/12/31/community-participation/';
+        var disqus_url = 'http://extrabiomes.net/blog/2012/12/31/community-participation/';
         var disqus_script = 'embed.js';
       
     (function () {
