@@ -4,10 +4,10 @@ package net.extrabiomes.world;
 import java.io.File;
 
 import net.extrabiomes.ExtrabiomesXL;
-import net.extrabiomes.terraincontrol.configuration.WorldConfig;
-import net.extrabiomes.terraincontrol.wrapper.BiomeManager;
-import net.extrabiomes.terraincontrol.wrapper.BiomeManagerOld;
-import net.extrabiomes.terraincontrol.wrapper.SingleWorld;
+import net.extrabiomes.terraincontrol.SingleWorld;
+import net.extrabiomes.terraincontrol.TCWorldChunkManager;
+import net.extrabiomes.terraincontrol.TCWorldChunkManagerOld;
+import net.extrabiomes.terraincontrol.util.WorldHelper;
 import net.extrabiomes.utility.LogWriter;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.world.World;
@@ -15,18 +15,20 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.IChunkProvider;
 
+import com.khorn.terraincontrol.configuration.WorldConfig;
+
 /**
  * ExtrabiomesWorldType - Used for Extrabiomes worlds
  * 
  * @author ScottKillen
  * 
  */
-public class ExtrabiomesWorldType extends WorldType {
-
+public class ExtrabiomesWorldType extends WorldType
+{
     public SingleWorld worldTC;
 
-    public ExtrabiomesWorldType() {
-        super(WorldTypeHelper.getNextWorldTypeID(), "ebxl");
+    public ExtrabiomesWorldType(final int index, final String name) {
+        super(index, name);
     }
 
     @Override
@@ -43,8 +45,7 @@ public class ExtrabiomesWorldType extends WorldType {
             if (world instanceof WorldClient) return super.getChunkManager(world);
         } catch (final NoClassDefFoundError e) {
             // There isn't a WorldClient class, so we are on a
-            // stand-alone
-            // server. Continue normally.
+            // stand-alone server. Continue normally.
         }
 
         // Restore old biomes
@@ -55,9 +56,9 @@ public class ExtrabiomesWorldType extends WorldType {
                 "Worlds/" + world.getSaveHandler().getSaveDirectoryName());
 
         if (!worldDirectory.exists()) {
-            LogWriter
-                    .fine("Terrain Control: settings for save \"%s\" do not exist, creating defaults",
-                            world.getSaveHandler().getSaveDirectoryName());
+            LogWriter.fine(
+                    "Terrain Control: settings for save \"%s\" do not exist, creating defaults",
+                    world.getSaveHandler().getSaveDirectoryName());
 
             if (!worldDirectory.mkdirs())
                 System.out.println("Terrain Control: cant create folder "
@@ -68,25 +69,29 @@ public class ExtrabiomesWorldType extends WorldType {
         final WorldConfig config = new WorldConfig(worldDirectory, worldTC, false);
         worldTC.Init(world, config);
 
-        WorldChunkManager ChunkManager = null;
+        WorldChunkManager chunkManager = null;
 
         switch (worldTC.getSettings().ModeBiome)
         {
             case FromImage:
             case Normal:
-                ChunkManager = new BiomeManager(worldTC);
-                worldTC.setBiomeManager((BiomeManager) ChunkManager);
+                chunkManager = new TCWorldChunkManager(worldTC);
+                worldTC.setBiomeManager((TCWorldChunkManager) chunkManager);
                 break;
             case OldGenerator:
-                ChunkManager = new BiomeManagerOld(worldTC);
-                worldTC.setOldBiomeManager((BiomeManagerOld) ChunkManager);
+                chunkManager = new TCWorldChunkManagerOld(worldTC);
+                worldTC.setOldBiomeManager((TCWorldChunkManagerOld) chunkManager);
                 break;
             case Default:
-                ChunkManager = super.getChunkManager(world);
+                chunkManager = super.getChunkManager(world);
                 break;
         }
 
-        return ChunkManager;
+        return chunkManager;
     }
 
+    @Override
+    public int getMinimumSpawnHeight(final World world) {
+        return WorldHelper.toLocalWorld(world).getSettings().waterLevelMax;
+    }
 }

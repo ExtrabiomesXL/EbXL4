@@ -5,10 +5,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 
-import net.extrabiomes.terraincontrol.LocalWorld;
-import net.extrabiomes.terraincontrol.TerrainControl;
-import net.extrabiomes.terraincontrol.configuration.TCDefaultValues;
-import net.extrabiomes.terraincontrol.configuration.WorldConfig;
 import net.extrabiomes.utility.LogWriter;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.network.INetworkManager;
@@ -17,6 +13,12 @@ import net.minecraft.network.packet.NetHandler;
 import net.minecraft.network.packet.Packet1Login;
 import net.minecraft.network.packet.Packet250CustomPayload;
 import net.minecraft.server.MinecraftServer;
+
+import com.khorn.terraincontrol.LocalWorld;
+import com.khorn.terraincontrol.TerrainControl;
+import com.khorn.terraincontrol.configuration.TCDefaultValues;
+import com.khorn.terraincontrol.configuration.WorldConfig;
+
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.Player;
 
