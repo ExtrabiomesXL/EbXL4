@@ -71,9 +71,8 @@ public class ExtrabiomesWorldType extends WorldType
 
         WorldChunkManager chunkManager = null;
 
-        switch (worldTC.getSettings().ModeBiome)
+        switch (worldTC.getSettings().ModeTerrain)
         {
-            case FromImage:
             case Normal:
                 chunkManager = new TCWorldChunkManager(worldTC);
                 worldTC.setBiomeManager((TCWorldChunkManager) chunkManager);
@@ -94,4 +93,8 @@ public class ExtrabiomesWorldType extends WorldType
     public int getMinimumSpawnHeight(final World world) {
         return WorldHelper.toLocalWorld(world).getSettings().waterLevelMax;
     }
+    
+    public SingleWorld getWorldTC() {
+		return worldTC;
+	}
 }

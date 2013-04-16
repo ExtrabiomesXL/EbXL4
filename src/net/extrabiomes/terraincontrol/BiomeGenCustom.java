@@ -66,7 +66,7 @@ public class BiomeGenCustom extends BiomeGenBase
         spawnableMonsterList = baseBiome.getSpawnableList(EnumCreatureType.monster);
         spawnableCreatureList = baseBiome.getSpawnableList(EnumCreatureType.creature);
         spawnableWaterCreatureList = baseBiome.getSpawnableList(EnumCreatureType.waterCreature);
-        field_82914_M = baseBiome.getSpawnableList(EnumCreatureType.ambient);
+        spawnableCaveCreatureList = baseBiome.getSpawnableList(EnumCreatureType.ambient);
     }
 
     // getFoliageColorAtCoords
@@ -134,7 +134,7 @@ public class BiomeGenCustom extends BiomeGenBase
         addMobs(spawnableCreatureList, config.spawnCreaturesAddDefaults, config.spawnCreatures);
         addMobs(spawnableWaterCreatureList, config.spawnWaterCreaturesAddDefaults,
                 config.spawnWaterCreatures);
-        addMobs(field_82914_M, config.spawnAmbientCreaturesAddDefaults,
+        addMobs(spawnableCaveCreatureList, config.spawnAmbientCreaturesAddDefaults,
                 config.spawnAmbientCreatures);
 
         // color ?

@@ -37,6 +37,7 @@ import com.khorn.terraincontrol.LocalWorld;
 import com.khorn.terraincontrol.configuration.BiomeConfig;
 import com.khorn.terraincontrol.configuration.Tag;
 import com.khorn.terraincontrol.configuration.WorldConfig;
+import com.khorn.terraincontrol.customobjects.CustomObjectStructureCache;
 import com.khorn.terraincontrol.generator.resourcegens.TreeType;
 
 public class SingleWorld implements LocalWorld
@@ -501,7 +502,7 @@ public class SingleWorld implements LocalWorld
 
     }
 
-    @Override
+    //@Override
     public void replaceBiomesLate() {
         if (settings.HaveBiomeReplace) {
             final byte[] ChunkBiomes = chunkCache[0].getBiomeArray();
@@ -537,9 +538,9 @@ public class SingleWorld implements LocalWorld
                             for (int sectionY = 0; sectionY < 16; sectionY++) {
                                 final int blockId = section.getExtBlockID(sectionX, sectionY,
                                         sectionZ);
-                                if (biomeConfig.ReplaceMatrixBlocks[blockId] == null) continue;
+                                if (biomeConfig.replaceMatrixBlocks[blockId] == null) continue;
 
-                                final int replaceTo = biomeConfig.ReplaceMatrixBlocks[blockId][section
+                                final int replaceTo = biomeConfig.replaceMatrixBlocks[blockId][section
                                         .getYLocation() + sectionY];
                                 if (replaceTo == -1) continue;
 
@@ -565,15 +566,20 @@ public class SingleWorld implements LocalWorld
     }
 
     @Override
-    public void setBlock(final int x, final int y, final int z, final int typeId, final int data,
-            final boolean updateLight, final boolean applyPhysics, final boolean notifyPlayers)
+    public void setBlock(final int x, final int y, final int z, final int typeId, final int data, final boolean updateLight, final boolean applyPhysics, final boolean notifyPlayers)
     {
         if (applyPhysics)
-            world.setBlockAndMetadataWithUpdate(x, y, z, typeId, data, notifyPlayers);
-        else
-            world.setBlockAndMetadata(x, y, z, typeId, data);
+        {
+            world.setBlock(x, y, z, typeId, data, notifyPlayers ? 0x02 : 0x02 & 0x04);
+        } else
+        {
+            world.setBlock(x, y, z, typeId, data, 0);
+        }
 
-        if (updateLight) world.updateAllLightTypes(x, y, z);
+        if (updateLight)
+        {
+            this.world.updateAllLightTypes(x, y, z);
+        }
     }
 
     @Override
@@ -591,4 +597,22 @@ public class SingleWorld implements LocalWorld
         oldBiomeManager = manager;
         biomeManager = manager;
     }
+
+	@Override
+	public void replaceBiomes() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public Tag getMetadata(int x, int y, int z) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public CustomObjectStructureCache getStructureCache() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

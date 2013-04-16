@@ -17,7 +17,8 @@ public abstract class Settings
     }
 
     public static Optional<LocalWorld> getTCWorld() {
-        return worldType.getTCWorld();
+    	Optional<LocalWorld> tcWorld = Optional.fromNullable((LocalWorld)worldType.getWorldTC());
+        return tcWorld;
     }
 
     public static ExtrabiomesWorldType getWorldType() {

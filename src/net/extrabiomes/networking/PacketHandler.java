@@ -16,12 +16,10 @@ import com.khorn.terraincontrol.configuration.TCDefaultValues;
 import com.khorn.terraincontrol.configuration.WorldConfig;
 
 import cpw.mods.fml.client.FMLClientHandler;
-import cpw.mods.fml.common.Side;
-import cpw.mods.fml.common.asm.SideOnly;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
 
-@SideOnly(Side.CLIENT)
+//@cpw.mods.fml.relauncher.SideOnly(Side.CLIENT)
 public class PacketHandler implements IPacketHandler
 {
 

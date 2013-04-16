@@ -111,7 +111,7 @@ public class ChunkProvider implements IChunkProvider
                         if (sections[sectionId] == null) // Second
                                                          // argument is
                                                          // skylight
-                            sections[sectionId] = new ExtendedBlockStorage(sectionId << 4);
+                        	sections[sectionId] = new ExtendedBlockStorage(sectionId << 4, !chunk.worldObj.provider.hasNoSky);
                         sections[sectionId].setExtBlockID(blockX, blockY & 0xF, blockZ, block);
                     }
                 }
@@ -131,8 +131,15 @@ public class ChunkProvider implements IChunkProvider
         return true;
     }
 
-    @Override
+    /*@Override
     public boolean unload100OldestChunks() {
         return false;
-    }
+    }*/
+    
+    //This seems to have replaced unload100OldestChunks?
+	@Override
+	public boolean unloadQueuedChunks() {
+		// TODO Auto-generated method stub
+		return false;
+	}
 }
