@@ -5,7 +5,7 @@
 url: http://extrabiomes.net
 title: Designing Intelligent Design
 subtitle: Building ExtrabiomesXL 4
-author: ScottKillen
+author: ExtrabiomesXL Team
 simple_search: http://google.com/search
 description:
 
@@ -58,13 +58,13 @@ default_asides: [asides/recent_posts.html, asides/twitter.html, asides/delicious
 # ----------------------- #
 
 # Github repositories
-github_user: ScottKillen
+github_user: ExtrabiomesXL
 github_repo_count: 0
 github_show_profile_link: true
 github_skip_forks: true
 
 # Twitter
-twitter_user: Oncostman
+twitter_user: MisterFiber
 twitter_tweet_count: 4
 twitter_show_replies: false
 twitter_follow_button: true
