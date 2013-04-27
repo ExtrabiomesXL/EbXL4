@@ -12,7 +12,6 @@ import net.extrabiomes.terraincontrol.util.WorldHelper;
 import net.extrabiomes.utility.LogWriter;
 import net.extrabiomes.world.ExtrabiomesWorldType;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.server.MinecraftServer;
 
 import com.google.common.base.Optional;
 import com.khorn.terraincontrol.LocalWorld;
@@ -55,17 +54,20 @@ public final class ExtrabiomesXL implements TerrainControlEngine {
     @Override
     public LocalWorld getWorld(final String name) {
         final Optional<LocalWorld> worldTC = Settings.getTCWorld();
-        if (!worldTC.isPresent()) return null;
+        if (!worldTC.isPresent()){
+        	return null;
+        }
         LocalWorld world = worldTC.get();
-        final String worldName = MinecraftServer.getServer().worldServers[0].getSaveHandler()
+        return world;
+       /* final String worldName = MinecraftServer.getServer().worldServers[0].getSaveHandler()
                 .getSaveDirectoryName();
-        if (world.getName() == worldName)
+        if (world.getName() == worldName){
             return world;
-        else {
+        }else{
             // Outdated world stored
             Settings.getWorldType().worldTC = null;
             return null;
-        }
+        }*/
 
     }
 
