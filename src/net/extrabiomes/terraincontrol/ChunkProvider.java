@@ -3,6 +3,7 @@ package net.extrabiomes.terraincontrol;
 
 import java.util.List;
 
+import net.extrabiomes.generation.ExtraBiomesWorldGenerator;
 import net.minecraft.block.BlockSand;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.IProgressUpdate;
@@ -20,12 +21,14 @@ import com.khorn.terraincontrol.generator.ObjectSpawner;
 public class ChunkProvider implements IChunkProvider
 {
 
-    private final SingleWorld     world;
-    private final World           worldHandle;
-    private boolean               TestMode = false;
+    private final SingleWorld    		world;
+    private final World          		worldHandle;
+    private boolean              		TestMode = false;
 
-    private final ChunkProviderTC generator;
-    private final ObjectSpawner   spawner;
+    private final ChunkProviderTC 		generator;
+    private final ObjectSpawner   		spawner;
+    private ExtraBiomesWorldGenerator	extraBiomesWorldGenerator;
+    
 
     public ChunkProvider(final SingleWorld _world) {
         // super(_world.getWorld(), _world.getSeed());
@@ -86,11 +89,19 @@ public class ChunkProvider implements IChunkProvider
 
     @Override
     public void populate(final IChunkProvider ChunkProvider, final int x, final int z) {
-        if (TestMode) return;
+        if (TestMode){
+        	return;
+        }
+        
+        extraBiomesWorldGenerator.PreDecorate(ChunkProvider.loadChunk(x, z));
+        
         BlockSand.fallInstantly = true;
         world.LoadChunk(x, z);
         spawner.populate(x, z);
         BlockSand.fallInstantly = false;
+        
+        extraBiomesWorldGenerator.PostDecorate(ChunkProvider.loadChunk(x, z));
+        
     }
 
     @Override
