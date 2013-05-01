@@ -8,7 +8,7 @@ package net.extrabiomes.generation.layers;
  */
 public interface IWorldGenLayer {
 	
-	double[] getValues(int x, int y, int rangeX, int rangeY);
+	double[] getValues(int x, int z, int rangeX, int rangeZ);
 	
-	
+	double getValue(int x, int z);
 }

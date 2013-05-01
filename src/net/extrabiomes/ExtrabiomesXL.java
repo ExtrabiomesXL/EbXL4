@@ -4,6 +4,7 @@ package net.extrabiomes;
 import java.io.File;
 import java.util.logging.Level;
 
+import net.extrabiomes.generation.ExtraBiomesWorldGenerator;
 import net.extrabiomes.lib.Reference;
 import net.extrabiomes.lib.Settings;
 import net.extrabiomes.networking.ConnectionHandler;
@@ -81,6 +82,8 @@ public final class ExtrabiomesXL implements TerrainControlEngine {
         LogWriter.fine("Created creative tab for mod items.");
         
         terrainControlDirectory = new File(event.getModConfigurationDirectory(), "TerrainControl");
+        
+        new ExtraBiomesWorldGenerator();
 
         // Load configuration
         // Create blocks

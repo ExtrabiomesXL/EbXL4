@@ -1,5 +1,6 @@
 package net.extrabiomes.generation;
 
+import net.extrabiomes.generation.layers.LayerManager;
 import net.minecraft.world.chunk.Chunk;
 
 
@@ -11,8 +12,16 @@ import net.minecraft.world.chunk.Chunk;
  */
 public class ExtraBiomesWorldGenerator {
 	
+	
+	public static ExtraBiomesWorldGenerator instance;
+	
+	public LayerManager layerManager;
+	
 	public ExtraBiomesWorldGenerator(){
 		
+		layerManager = new LayerManager();
+		
+		instance = this;
 	}
 	
 	
@@ -20,7 +29,7 @@ public class ExtraBiomesWorldGenerator {
 	 * This method is called before a chunk is decorated and allows the terrain in that chunk to be modifed before decorations are placed
 	 */
 	public void PreDecorate(Chunk chunk){
-		
+		int i = 1;
 	}
 	
 	

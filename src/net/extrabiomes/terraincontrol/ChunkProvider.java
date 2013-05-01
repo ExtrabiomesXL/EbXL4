@@ -27,7 +27,6 @@ public class ChunkProvider implements IChunkProvider
 
     private final ChunkProviderTC 		generator;
     private final ObjectSpawner   		spawner;
-    private ExtraBiomesWorldGenerator	extraBiomesWorldGenerator;
     
 
     public ChunkProvider(final SingleWorld _world) {
@@ -93,14 +92,14 @@ public class ChunkProvider implements IChunkProvider
         	return;
         }
         
-        extraBiomesWorldGenerator.PreDecorate(ChunkProvider.loadChunk(x, z));
+        ExtraBiomesWorldGenerator.instance.PreDecorate(ChunkProvider.loadChunk(x, z));
         
         BlockSand.fallInstantly = true;
         world.LoadChunk(x, z);
         spawner.populate(x, z);
         BlockSand.fallInstantly = false;
         
-        extraBiomesWorldGenerator.PostDecorate(ChunkProvider.loadChunk(x, z));
+        ExtraBiomesWorldGenerator.instance.PostDecorate(ChunkProvider.loadChunk(x, z));
         
     }
 

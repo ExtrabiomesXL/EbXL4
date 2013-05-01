@@ -7,4 +7,16 @@ package net.extrabiomes.generation.layers;
  */
 public class FeatureLayer implements IWorldGenLayer{
 
+	@Override
+	public double[] getValues(int x, int z, int rangeX, int rangeZ) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public double getValue(int x, int z) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
