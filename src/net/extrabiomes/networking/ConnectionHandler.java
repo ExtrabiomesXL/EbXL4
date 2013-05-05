@@ -59,7 +59,7 @@ public class ConnectionHandler implements IConnectionHandler {
 
         // Get the config
         final String worldName = MinecraftServer.getServer().worldServers[0].getSaveHandler()
-                .getSaveDirectoryName();
+                .getWorldDirectoryName();
         final LocalWorld worldTC = TerrainControl.getWorld(worldName);
 
         if (worldTC == null) // World not loaded

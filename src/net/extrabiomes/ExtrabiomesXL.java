@@ -83,7 +83,7 @@ public final class ExtrabiomesXL implements TerrainControlEngine {
         
         terrainControlDirectory = new File(event.getModConfigurationDirectory(), "TerrainControl");
         
-        new ExtraBiomesWorldGenerator();
+        //new ExtraBiomesWorldGenerator(null);
 
         // Load configuration
         // Create blocks

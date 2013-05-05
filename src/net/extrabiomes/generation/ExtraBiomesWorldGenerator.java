@@ -1,6 +1,8 @@
 package net.extrabiomes.generation;
 
 import net.extrabiomes.generation.layers.LayerManager;
+import net.extrabiomes.terraincontrol.SingleWorld;
+import net.minecraft.block.Block;
 import net.minecraft.world.chunk.Chunk;
 
 
@@ -17,19 +19,18 @@ public class ExtraBiomesWorldGenerator {
 	
 	public LayerManager layerManager;
 	
-	public ExtraBiomesWorldGenerator(){
+	public ExtraBiomesWorldGenerator(SingleWorld world){
 		
-		layerManager = new LayerManager();
+		layerManager = new LayerManager(world);
 		
 		instance = this;
 	}
-	
 	
 	/**
 	 * This method is called before a chunk is decorated and allows the terrain in that chunk to be modifed before decorations are placed
 	 */
 	public void PreDecorate(Chunk chunk){
-		int i = 1;
+		
 	}
 	
 	
@@ -38,6 +39,16 @@ public class ExtraBiomesWorldGenerator {
 	 */
 	public void PostDecorate(Chunk chunk){
 		
+		double[] features = layerManager.featureLayer.getValues(chunk.xPosition * 16, chunk.zPosition + 16, 16, 16);
+		
+		for(int x = 0; x < 16; x++){
+			for(int z = 0; z < 16; z++){
+				double temp = layerManager.temperatureLayer.getValue(chunk.xPosition * 16 + x, chunk.zPosition + 16 + z);
+				if(temp > 0.1){
+					chunk.setBlockIDWithMetadata(x, 70, z, Block.blockClay.blockID, 0);
+				}
+			}
+		}
 	}
 	
 	

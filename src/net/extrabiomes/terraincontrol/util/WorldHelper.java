@@ -31,7 +31,7 @@ public abstract class WorldHelper
      * @return The LocalWorld, or null if there is none.
      */
     public static LocalWorld toLocalWorld(final World world) {
-        final String worldName = world.getSaveHandler().getSaveDirectoryName();
+        final String worldName = world.getSaveHandler().getWorldDirectoryName();
         return TerrainControl.getWorld(worldName);
     }
 }

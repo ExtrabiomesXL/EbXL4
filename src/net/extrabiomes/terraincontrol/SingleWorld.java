@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+import net.extrabiomes.generation.ExtraBiomesWorldGenerator;
 import net.extrabiomes.terraincontrol.structuregens.MineshaftGen;
 import net.extrabiomes.terraincontrol.structuregens.NetherFortressGen;
 import net.extrabiomes.terraincontrol.structuregens.RareBuildingGen;
@@ -105,15 +106,40 @@ public class SingleWorld implements LocalWorld
         name = _name;
 
         for (int i = 0; i < DefaultBiome.values().length; i++) {
-            final BiomeGenBase oldBiome = BiomeGenBase.biomeList[i];
-            biomesToRestore[i] = oldBiome;
-            final BiomeGenCustom custom = new BiomeGenCustom(nextBiomeId++, oldBiome.biomeName);
-            custom.CopyBiome(oldBiome);
-            final Biome biome = new Biome(custom);
-            biomes[biome.getId()] = biome;
-            defaultBiomes.add(biome);
-            biomeNames.put(biome.getName(), biome);
+        	AddVanillaBiome(i);
         }
+    }
+    
+    
+    /**
+     * Constructor that takes an array of Biome IDs to add to world generation
+     * 
+     * @param _name The name of the world
+     * @param idsToAdd An array of Biome IDs to add
+     */
+    public SingleWorld(final String _name, int[] idsToAdd){
+    	name = _name;
+    	
+    	for(int i: idsToAdd){
+    		AddVanillaBiome(i);
+    	}
+    }
+    
+    
+    /**
+     * Adds a vanilla biome with the given ID to world generation and returns it.
+     */
+    @Override
+    public Biome AddVanillaBiome(int biomeID){
+    	final BiomeGenBase oldBiome = BiomeGenBase.biomeList[biomeID];
+        biomesToRestore[biomeID] = oldBiome;
+        final BiomeGenCustom custom = new BiomeGenCustom(nextBiomeId++, oldBiome.biomeName);
+        custom.CopyBiome(oldBiome);
+        final Biome biome = new Biome(custom);
+        biomes[biome.getId()] = biome;
+        defaultBiomes.add(biome);
+        biomeNames.put(biome.getName(), biome);
+        return biome;
     }
 
     @Override
@@ -388,6 +414,9 @@ public class SingleWorld implements LocalWorld
 
         chunkCache = new Chunk[4];
         generator = new ChunkProvider(this);
+        
+        //TODO 
+        ExtraBiomesWorldGenerator.instance = new ExtraBiomesWorldGenerator(this);
     }
 
     public void InitM(final World world, final WorldConfig config) {

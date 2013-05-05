@@ -53,19 +53,23 @@ public class ExtrabiomesWorldType extends WorldType
 
         // Load everything
         final File worldDirectory = new File(ExtrabiomesXL.instance.getTerrainControlDirectory(),
-                "Worlds/" + world.getSaveHandler().getSaveDirectoryName());
+                "Worlds/" + world.getSaveHandler().getWorldDirectoryName());
 
         if (!worldDirectory.exists()) {
             LogWriter.fine(
                     "Terrain Control: settings for save \"%s\" do not exist, creating defaults",
-                    world.getSaveHandler().getSaveDirectoryName());
+                    world.getSaveHandler().getWorldDirectoryName());
 
             if (!worldDirectory.mkdirs())
                 System.out.println("Terrain Control: cant create folder "
                         + worldDirectory.getAbsolutePath());
         }
 
-        worldTC = new SingleWorld(world.getSaveHandler().getSaveDirectoryName());
+        int[] oldBiomesToUse = new int[]{1,6,7};
+        
+        worldTC = new SingleWorld(world.getSaveHandler().getWorldDirectoryName(), oldBiomesToUse);
+           
+        
         final WorldConfig config = new WorldConfig(worldDirectory, worldTC, false);
         worldTC.Init(world, config);
 
