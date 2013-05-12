@@ -149,6 +149,13 @@ public class SingleWorld implements LocalWorld
         biomeNames.put(biome.getName(), biome);
         return biome;
     }
+    
+	@Override
+	public LocalBiome AddBiome(Biome biome, int id) {
+		biomes[biome.getId()] = biome;
+        biomeNames.put(biome.getName(), biome);
+        return biome;
+	}
 
     @Override
     public void attachMetadata(final int x, final int y, final int z, final Tag tag) {
@@ -644,4 +651,7 @@ public class SingleWorld implements LocalWorld
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+
+
 }
