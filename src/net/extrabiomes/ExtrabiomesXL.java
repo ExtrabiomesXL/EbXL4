@@ -5,12 +5,14 @@ import java.io.File;
 import java.util.logging.Level;
 
 import net.extrabiomes.generation.ExtraBiomesWorldGenerator;
+import net.extrabiomes.generation.biomes.YellowStone;
 import net.extrabiomes.lib.Reference;
 import net.extrabiomes.lib.Settings;
 import net.extrabiomes.networking.ConnectionHandler;
 import net.extrabiomes.proxy.CommonProxy;
 import net.extrabiomes.terraincontrol.util.WorldHelper;
 import net.extrabiomes.utility.LogWriter;
+import net.extrabiomes.world.BiomeManager;
 import net.extrabiomes.world.ExtrabiomesWorldType;
 import net.minecraft.creativetab.CreativeTabs;
 
@@ -45,6 +47,8 @@ public final class ExtrabiomesXL implements TerrainControlEngine {
 
     @SidedProxy(clientSide = Reference.MOD_CLIENT_PROXY, serverSide = Reference.MOD_PROXY)
     public static CommonProxy    proxy;
+    
+    public static BiomeManager biomeManager;
 
     @Override
     public File getGlobalObjectsDirectory() {
@@ -83,7 +87,6 @@ public final class ExtrabiomesXL implements TerrainControlEngine {
         
         terrainControlDirectory = new File(event.getModConfigurationDirectory(), "TerrainControl");
         
-        //new ExtraBiomesWorldGenerator(null);
 
         // Load configuration
         // Create blocks
@@ -93,6 +96,11 @@ public final class ExtrabiomesXL implements TerrainControlEngine {
         TerrainControl.supportedBlockIds = 4095;
         TerrainControl.startEngine(this);
 
+        biomeManager = new BiomeManager();
+        
+        //TODO Move somewhere else and load based off config file
+        biomeManager.RegisterBiome(new YellowStone(2, "Yellowstone"));
+        
         Settings.setWorldType(new ExtrabiomesWorldType(WorldHelper.getNextWorldTypeID(), "ebxl"));
 
         proxy.addStringLocalization("itemGroup.extrabiomesTab", Reference.MOD_NAME);

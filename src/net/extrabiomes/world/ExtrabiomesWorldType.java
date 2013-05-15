@@ -64,11 +64,15 @@ public class ExtrabiomesWorldType extends WorldType
                 System.out.println("Terrain Control: cant create folder "
                         + worldDirectory.getAbsolutePath());
         }
-
-        int[] oldBiomesToUse = new int[]{1,6,7};
+        
+        //Biome 1 is ocean
+        //Biome 7 is river
+        int[] oldBiomesToUse = new int[]{7};
         
         worldTC = new SingleWorld(world.getSaveHandler().getWorldDirectoryName(), oldBiomesToUse);
-           
+         
+        ExtrabiomesXL.biomeManager.RegisterBiomesForWorldGen(worldTC);
+        
         
         final WorldConfig config = new WorldConfig(worldDirectory, worldTC, false);
         worldTC.Init(world, config);

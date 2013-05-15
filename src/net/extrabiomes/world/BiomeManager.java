@@ -42,9 +42,9 @@ public class BiomeManager {
 	public void RegisterBiomesForWorldGen(LocalWorld world){
 		for(ExtraBiomesBiome b : Biomes){
 			try{
-				world.AddBiome(b, b.getCustomId());
+				world.AddBiome(b, b.biomeID);
 			}catch(Exception e){
-				System.err.println("Error adding biome " + b.getName() + "\n" + e.getStackTrace());
+				System.err.println("Error adding biome " + b.biomeName + "\n" + e.getStackTrace());
 			}
 			
 		}

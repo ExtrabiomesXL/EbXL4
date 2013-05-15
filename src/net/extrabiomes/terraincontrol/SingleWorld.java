@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Random;
 
 import net.extrabiomes.generation.ExtraBiomesWorldGenerator;
+import net.extrabiomes.generation.biomes.ExtraBiomesBiome;
 import net.extrabiomes.terraincontrol.structuregens.MineshaftGen;
 import net.extrabiomes.terraincontrol.structuregens.NetherFortressGen;
 import net.extrabiomes.terraincontrol.structuregens.RareBuildingGen;
@@ -151,10 +152,12 @@ public class SingleWorld implements LocalWorld
     }
     
 	@Override
-	public LocalBiome AddBiome(Biome biome, int id) {
-		biomes[biome.getId()] = biome;
-        biomeNames.put(biome.getName(), biome);
-        return biome;
+	public LocalBiome AddBiome(ExtraBiomesBiome biome, int id) {
+		biomesToRestore[biome.biomeID] = biome;
+        //biomeNames.put(biome.getName(), biome);
+        AddVanillaBiome(id);
+        
+        return biome.tcBiome;
 	}
 
     @Override
@@ -272,6 +275,7 @@ public class SingleWorld implements LocalWorld
 
     @Override
     public ArrayList<LocalBiome> getDefaultBiomes() {
+    	
         return defaultBiomes;
     }
 
@@ -421,6 +425,7 @@ public class SingleWorld implements LocalWorld
 
         chunkCache = new Chunk[4];
         generator = new ChunkProvider(this);
+        
         
         //TODO 
         ExtraBiomesWorldGenerator.instance = new ExtraBiomesWorldGenerator(this);

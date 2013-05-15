@@ -39,7 +39,7 @@ public class ExtraBiomesWorldGenerator {
 	 */
 	public void PostDecorate(Chunk chunk){
 		
-		double[] features = layerManager.featureLayer.getValues(chunk.xPosition * 16, chunk.zPosition + 16, 16, 16);
+		/*double[] features = layerManager.featureLayer.getValues(chunk.xPosition * 16, chunk.zPosition + 16, 16, 16);
 		
 		for(int x = 0; x < 16; x++){
 			for(int z = 0; z < 16; z++){
@@ -48,7 +48,7 @@ public class ExtraBiomesWorldGenerator {
 					chunk.setBlockIDWithMetadata(x, 70, z, Block.blockClay.blockID, 0);
 				}
 			}
-		}
+		}*/
 	}
 	
 	

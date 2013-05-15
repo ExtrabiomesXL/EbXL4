@@ -7,18 +7,21 @@ import net.extrabiomes.terraincontrol.Biome;
 import net.extrabiomes.terraincontrol.BiomeGenCustom;
 import net.minecraft.world.chunk.Chunk;
 
-public abstract class ExtraBiomesBiome extends Biome{
+public abstract class ExtraBiomesBiome extends BiomeGenCustom{
 	
 	/**
 	 * 
 	 */
 	public ArrayList<DecoratorCount> decorators;
 
-	public ExtraBiomesBiome(BiomeGenCustom biome) {
-		super(biome);
+	public Biome tcBiome;
+	
+	public ExtraBiomesBiome(int id, String name) {
+		super(id, name);
+		
+		tcBiome = new Biome(this);
+		
 		decorators = new ArrayList<DecoratorCount>();
-		
-		
 	}
 	
 	public void decorate(Chunk chunk){
