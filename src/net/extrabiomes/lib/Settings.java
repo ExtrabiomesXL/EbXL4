@@ -1,11 +1,11 @@
 
 package net.extrabiomes.lib;
 
+import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.world.ExtrabiomesWorldType;
 import net.minecraft.creativetab.CreativeTabs;
 
 import com.google.common.base.Optional;
-import com.khorn.terraincontrol.LocalWorld;
 
 public abstract class Settings
 {

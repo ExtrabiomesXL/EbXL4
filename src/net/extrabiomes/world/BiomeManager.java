@@ -2,12 +2,12 @@ package net.extrabiomes.world;
 
 import java.util.ArrayList;
 
-import com.khorn.terraincontrol.LocalWorld;
-import com.khorn.terraincontrol.TerrainControl;
 
 import net.extrabiomes.ExtrabiomesXL;
 import net.extrabiomes.generation.ExtraBiomesWorldGenerator;
 import net.extrabiomes.generation.biomes.ExtraBiomesBiome;
+import net.extrabiomes.terraincontrol.LocalWorld;
+import net.extrabiomes.terraincontrol.TerrainControl;
 
 /**
  * @author Chris

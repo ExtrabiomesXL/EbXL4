@@ -7,6 +7,7 @@ import net.extrabiomes.ExtrabiomesXL;
 import net.extrabiomes.terraincontrol.SingleWorld;
 import net.extrabiomes.terraincontrol.TCWorldChunkManager;
 import net.extrabiomes.terraincontrol.TCWorldChunkManagerOld;
+import net.extrabiomes.terraincontrol.configuration.WorldConfig;
 import net.extrabiomes.terraincontrol.util.WorldHelper;
 import net.extrabiomes.utility.LogWriter;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -15,7 +16,6 @@ import net.minecraft.world.WorldType;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.IChunkProvider;
 
-import com.khorn.terraincontrol.configuration.WorldConfig;
 
 /**
  * ExtrabiomesWorldType - Used for Extrabiomes worlds
@@ -67,9 +67,9 @@ public class ExtrabiomesWorldType extends WorldType
         
         
         //0 is ocean, 7 is river (required), 10 is frozen ocean, 11 is frozen river
-        int[] oldBiomesToUse = new int[]{0,7,10,11};
+        //int[] oldBiomesToUse = new int[]{0,7,10,11};
         
-        worldTC = new SingleWorld(world.getSaveHandler().getWorldDirectoryName(), oldBiomesToUse);
+        worldTC = new SingleWorld(world.getSaveHandler().getWorldDirectoryName());//, oldBiomesToUse);
          
         ExtrabiomesXL.biomeManager.RegisterBiomesForWorldGen(worldTC);
         

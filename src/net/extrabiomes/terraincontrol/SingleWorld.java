@@ -7,6 +7,16 @@ import java.util.Random;
 
 import net.extrabiomes.generation.ExtraBiomesWorldGenerator;
 import net.extrabiomes.generation.biomes.ExtraBiomesBiome;
+import net.extrabiomes.terraincontrol.DefaultBiome;
+import net.extrabiomes.terraincontrol.DefaultMaterial;
+import net.extrabiomes.terraincontrol.IBiomeManager;
+import net.extrabiomes.terraincontrol.LocalBiome;
+import net.extrabiomes.terraincontrol.LocalWorld;
+import net.extrabiomes.terraincontrol.configuration.BiomeConfig;
+import net.extrabiomes.terraincontrol.configuration.Tag;
+import net.extrabiomes.terraincontrol.configuration.WorldConfig;
+import net.extrabiomes.terraincontrol.customobjects.CustomObjectStructureCache;
+import net.extrabiomes.terraincontrol.generator.resourcegens.TreeType;
 import net.extrabiomes.terraincontrol.structuregens.MineshaftGen;
 import net.extrabiomes.terraincontrol.structuregens.NetherFortressGen;
 import net.extrabiomes.terraincontrol.structuregens.RareBuildingGen;
@@ -31,16 +41,6 @@ import net.minecraft.world.gen.feature.WorldGenTaiga1;
 import net.minecraft.world.gen.feature.WorldGenTaiga2;
 import net.minecraft.world.gen.feature.WorldGenTrees;
 
-import com.khorn.terraincontrol.DefaultBiome;
-import com.khorn.terraincontrol.DefaultMaterial;
-import com.khorn.terraincontrol.IBiomeManager;
-import com.khorn.terraincontrol.LocalBiome;
-import com.khorn.terraincontrol.LocalWorld;
-import com.khorn.terraincontrol.configuration.BiomeConfig;
-import com.khorn.terraincontrol.configuration.Tag;
-import com.khorn.terraincontrol.configuration.WorldConfig;
-import com.khorn.terraincontrol.customobjects.CustomObjectStructureCache;
-import com.khorn.terraincontrol.generator.resourcegens.TreeType;
 
 /**
  * @author Chris

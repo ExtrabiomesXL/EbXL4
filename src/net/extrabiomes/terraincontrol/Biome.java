@@ -1,10 +1,10 @@
 
 package net.extrabiomes.terraincontrol;
 
+import net.extrabiomes.terraincontrol.LocalBiome;
+import net.extrabiomes.terraincontrol.configuration.BiomeConfig;
 import net.minecraft.world.biome.BiomeGenBase;
 
-import com.khorn.terraincontrol.LocalBiome;
-import com.khorn.terraincontrol.configuration.BiomeConfig;
 
 public class Biome implements LocalBiome
 {

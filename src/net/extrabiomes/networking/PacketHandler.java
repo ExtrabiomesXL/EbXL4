@@ -7,13 +7,13 @@ import java.io.IOException;
 
 import net.extrabiomes.lib.Reference;
 import net.extrabiomes.terraincontrol.SingleWorld;
+import net.extrabiomes.terraincontrol.configuration.TCDefaultValues;
+import net.extrabiomes.terraincontrol.configuration.WorldConfig;
 import net.extrabiomes.utility.LogWriter;
 import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.network.INetworkManager;
 import net.minecraft.network.packet.Packet250CustomPayload;
 
-import com.khorn.terraincontrol.configuration.TCDefaultValues;
-import com.khorn.terraincontrol.configuration.WorldConfig;
 
 import cpw.mods.fml.client.FMLClientHandler;
 import cpw.mods.fml.common.network.IPacketHandler;

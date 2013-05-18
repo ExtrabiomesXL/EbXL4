@@ -4,6 +4,7 @@ package net.extrabiomes.terraincontrol.structuregens;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.util.WorldHelper;
 import net.minecraft.entity.monster.EntityBlaze;
 import net.minecraft.entity.monster.EntityMagmaCube;
@@ -13,7 +14,6 @@ import net.minecraft.world.biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
 
-import com.khorn.terraincontrol.LocalWorld;
 
 public class NetherFortressGen extends MapGenStructure
 {

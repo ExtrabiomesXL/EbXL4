@@ -1,12 +1,12 @@
 
 package net.extrabiomes.terraincontrol.structuregens;
 
+import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.util.WorldHelper;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureMineshaftStart;
 import net.minecraft.world.gen.structure.StructureStart;
 
-import com.khorn.terraincontrol.LocalWorld;
 
 public class MineshaftGen extends MapGenStructure
 {

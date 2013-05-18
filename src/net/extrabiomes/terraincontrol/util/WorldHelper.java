@@ -3,11 +3,11 @@ package net.extrabiomes.terraincontrol.util;
 
 import java.util.NoSuchElementException;
 
+import net.extrabiomes.terraincontrol.LocalWorld;
+import net.extrabiomes.terraincontrol.TerrainControl;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldType;
 
-import com.khorn.terraincontrol.LocalWorld;
-import com.khorn.terraincontrol.TerrainControl;
 
 public abstract class WorldHelper
 {

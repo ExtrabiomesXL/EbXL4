@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.extrabiomes.terraincontrol.DefaultBiome;
+import net.extrabiomes.terraincontrol.IBiomeManager;
+import net.extrabiomes.terraincontrol.biomelayers.layers.Layer;
+import net.extrabiomes.terraincontrol.configuration.WorldConfig;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.structure.MapGenVillage;
 
-import com.khorn.terraincontrol.DefaultBiome;
-import com.khorn.terraincontrol.IBiomeManager;
-import com.khorn.terraincontrol.biomelayers.layers.Layer;
-import com.khorn.terraincontrol.configuration.WorldConfig;
 
 public class TCWorldChunkManager extends WorldChunkManager implements IBiomeManager
 {

@@ -4,6 +4,7 @@ package net.extrabiomes.terraincontrol.util;
 import java.lang.reflect.Field;
 import java.util.Map;
 
+import net.extrabiomes.terraincontrol.configuration.Tag;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagByte;
 import net.minecraft.nbt.NBTTagByteArray;
@@ -17,7 +18,6 @@ import net.minecraft.nbt.NBTTagLong;
 import net.minecraft.nbt.NBTTagShort;
 import net.minecraft.nbt.NBTTagString;
 
-import com.khorn.terraincontrol.configuration.Tag;
 
 public class NBTHelper
 {

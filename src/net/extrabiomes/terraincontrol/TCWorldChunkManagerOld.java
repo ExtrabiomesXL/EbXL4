@@ -4,15 +4,15 @@ package net.extrabiomes.terraincontrol;
 import java.util.List;
 import java.util.Random;
 
+import net.extrabiomes.terraincontrol.IBiomeManager;
+import net.extrabiomes.terraincontrol.LocalWorld;
+import net.extrabiomes.terraincontrol.configuration.WorldConfig;
+import net.extrabiomes.terraincontrol.util.NoiseGeneratorOctaves2;
 import net.minecraft.world.ChunkPosition;
 import net.minecraft.world.biome.BiomeCache;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 
-import com.khorn.terraincontrol.IBiomeManager;
-import com.khorn.terraincontrol.LocalWorld;
-import com.khorn.terraincontrol.configuration.WorldConfig;
-import com.khorn.terraincontrol.util.NoiseGeneratorOctaves2;
 
 public class TCWorldChunkManagerOld extends WorldChunkManager implements IBiomeManager
 {

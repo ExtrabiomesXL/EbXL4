@@ -3,6 +3,8 @@ package net.extrabiomes.terraincontrol.structuregens;
 
 import java.util.Random;
 
+import net.extrabiomes.terraincontrol.LocalWorld;
+import net.extrabiomes.terraincontrol.configuration.BiomeConfig;
 import net.extrabiomes.terraincontrol.util.WorldHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.ComponentScatteredFeatureDesertPyramid;
@@ -11,8 +13,6 @@ import net.minecraft.world.gen.structure.ComponentScatteredFeatureSwampHut;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
 
-import com.khorn.terraincontrol.LocalWorld;
-import com.khorn.terraincontrol.configuration.BiomeConfig;
 
 public class RareBuildingStart extends StructureStart
 {

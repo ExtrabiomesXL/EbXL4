@@ -10,6 +10,11 @@ import net.extrabiomes.lib.Reference;
 import net.extrabiomes.lib.Settings;
 import net.extrabiomes.networking.ConnectionHandler;
 import net.extrabiomes.proxy.CommonProxy;
+import net.extrabiomes.terraincontrol.LocalWorld;
+import net.extrabiomes.terraincontrol.TerrainControl;
+import net.extrabiomes.terraincontrol.TerrainControlEngine;
+import net.extrabiomes.terraincontrol.customobjects.BODefaultValues;
+import net.extrabiomes.terraincontrol.util.StringHelper;
 import net.extrabiomes.terraincontrol.util.WorldHelper;
 import net.extrabiomes.utility.LogWriter;
 import net.extrabiomes.world.BiomeManager;
@@ -17,11 +22,6 @@ import net.extrabiomes.world.ExtrabiomesWorldType;
 import net.minecraft.creativetab.CreativeTabs;
 
 import com.google.common.base.Optional;
-import com.khorn.terraincontrol.LocalWorld;
-import com.khorn.terraincontrol.TerrainControl;
-import com.khorn.terraincontrol.TerrainControlEngine;
-import com.khorn.terraincontrol.customobjects.BODefaultValues;
-import com.khorn.terraincontrol.util.StringHelper;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.Instance;

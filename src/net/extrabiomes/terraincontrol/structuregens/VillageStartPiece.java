@@ -5,16 +5,16 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Random;
 
+import net.extrabiomes.terraincontrol.LocalWorld;
+import net.extrabiomes.terraincontrol.TerrainControl;
+import net.extrabiomes.terraincontrol.configuration.BiomeConfig;
+import net.extrabiomes.terraincontrol.configuration.BiomeConfig.VillageType;
 import net.extrabiomes.terraincontrol.util.WorldHelper;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.gen.structure.ComponentVillageStartPiece;
 
-import com.khorn.terraincontrol.LocalWorld;
-import com.khorn.terraincontrol.TerrainControl;
-import com.khorn.terraincontrol.configuration.BiomeConfig;
-import com.khorn.terraincontrol.configuration.BiomeConfig.VillageType;
 
 public class VillageStartPiece extends ComponentVillageStartPiece
 {

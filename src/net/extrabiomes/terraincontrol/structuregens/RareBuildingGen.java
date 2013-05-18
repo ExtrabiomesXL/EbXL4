@@ -6,15 +6,15 @@ import java.util.List;
 import java.util.Random;
 
 import net.extrabiomes.terraincontrol.Biome;
+import net.extrabiomes.terraincontrol.configuration.BiomeConfig;
+import net.extrabiomes.terraincontrol.configuration.WorldConfig;
+import net.extrabiomes.terraincontrol.configuration.BiomeConfig.RareBuildingType;
 import net.minecraft.entity.monster.EntityWitch;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
 
-import com.khorn.terraincontrol.configuration.BiomeConfig;
-import com.khorn.terraincontrol.configuration.BiomeConfig.RareBuildingType;
-import com.khorn.terraincontrol.configuration.WorldConfig;
 
 public class RareBuildingGen extends MapGenStructure
 {
