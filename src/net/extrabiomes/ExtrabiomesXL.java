@@ -99,7 +99,7 @@ public final class ExtrabiomesXL implements TerrainControlEngine {
         biomeManager = new BiomeManager();
         
         //TODO Move somewhere else and load based off config file
-        biomeManager.RegisterBiome(new YellowStone(2, "Yellowstone"));
+        biomeManager.RegisterBiome(new YellowStone(20, "Yellowstone"));
         
         Settings.setWorldType(new ExtrabiomesWorldType(WorldHelper.getNextWorldTypeID(), "ebxl"));
 

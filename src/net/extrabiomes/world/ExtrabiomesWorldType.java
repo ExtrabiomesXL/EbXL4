@@ -65,9 +65,9 @@ public class ExtrabiomesWorldType extends WorldType
                         + worldDirectory.getAbsolutePath());
         }
         
-        //Biome 1 is ocean
-        //Biome 7 is river
-        int[] oldBiomesToUse = new int[]{7};
+        
+        //0 is ocean, 7 is river (required), 10 is frozen ocean, 11 is frozen river
+        int[] oldBiomesToUse = new int[]{0,7,10,11};
         
         worldTC = new SingleWorld(world.getSaveHandler().getWorldDirectoryName(), oldBiomesToUse);
          

@@ -42,7 +42,7 @@ public class BiomeManager {
 	public void RegisterBiomesForWorldGen(LocalWorld world){
 		for(ExtraBiomesBiome b : Biomes){
 			try{
-				world.AddBiome(b, b.biomeID);
+				world.AddCustomBiome(b);
 			}catch(Exception e){
 				System.err.println("Error adding biome " + b.biomeName + "\n" + e.getStackTrace());
 			}

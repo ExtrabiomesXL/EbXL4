@@ -42,6 +42,10 @@ import com.khorn.terraincontrol.configuration.WorldConfig;
 import com.khorn.terraincontrol.customobjects.CustomObjectStructureCache;
 import com.khorn.terraincontrol.generator.resourcegens.TreeType;
 
+/**
+ * @author Chris
+ *
+ */
 public class SingleWorld implements LocalWorld
 {
     public static void restoreBiomes() {
@@ -70,6 +74,7 @@ public class SingleWorld implements LocalWorld
     private final HashMap<String, LocalBiome> biomeNames      = new HashMap<String, LocalBiome>();
 
     private static ArrayList<LocalBiome>      defaultBiomes   = new ArrayList<LocalBiome>();
+    private ArrayList<LocalBiome>			  customBiomes = new ArrayList<LocalBiome>();
     public StrongholdGen                      strongholdGen;
     public VillageGen                         villageGen;
     public MineshaftGen                       mineshaftGen;
@@ -134,7 +139,8 @@ public class SingleWorld implements LocalWorld
     public Biome AddVanillaBiome(int biomeID){
     	final BiomeGenBase oldBiome = BiomeGenBase.biomeList[biomeID];
         biomesToRestore[biomeID] = oldBiome;
-        final BiomeGenCustom custom = new BiomeGenCustom(nextBiomeId++, oldBiome.biomeName);
+        final BiomeGenCustom custom = new BiomeGenCustom(oldBiome.biomeID, oldBiome.biomeName);
+        nextBiomeId++;
         custom.CopyBiome(oldBiome);
         final Biome biome = new Biome(custom);
         biomes[biome.getId()] = biome;
@@ -142,6 +148,20 @@ public class SingleWorld implements LocalWorld
         biomeNames.put(biome.getName(), biome);
         return biome;
     }
+    
+    
+    /**
+     * Adds a custom biome to world generation. There is no need to return it as it is being provided in this case
+     */
+    @Override
+    public void AddCustomBiome(ExtraBiomesBiome biome) {
+    	//biomesToRestore[biome.biomeID] = biome;
+    	//biomes[biome.biomeID] = biome.tcBiome;
+    	//defaultBiomes.add(biome.tcBiome);
+    	//biomeNames.put(biome.biomeName, biome.tcBiome);
+    	customBiomes.add(biome.tcBiome);
+    	
+    };
 
     @Override
     public LocalBiome AddBiome(final String name, final int id) {
@@ -277,6 +297,11 @@ public class SingleWorld implements LocalWorld
     public ArrayList<LocalBiome> getDefaultBiomes() {
     	
         return defaultBiomes;
+    }
+    
+    @Override
+    public ArrayList<LocalBiome> getCustomBiomes(){
+    	return this.customBiomes;
     }
 
     @Override
