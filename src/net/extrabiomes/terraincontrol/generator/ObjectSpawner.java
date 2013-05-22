@@ -33,7 +33,7 @@ public class ObjectSpawner
         // Get the BiomeConfig of the other corner
         int biomeId = world.getBiomeId(x + 15, z + 15);
         BiomeConfig localBiomeConfig = this.worldSettings.biomeConfigs[biomeId];
-
+        
         // Get the random generator
         long resourcesSeed = worldSettings.resourcesSeed != 0L? worldSettings.resourcesSeed : world.getSeed();
         this.rand.setSeed(resourcesSeed);

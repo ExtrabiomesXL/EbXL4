@@ -2,6 +2,7 @@
 package net.extrabiomes.terraincontrol;
 
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 
 import net.extrabiomes.terraincontrol.MobAlternativeNames;
@@ -12,6 +13,7 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.world.ColorizerFoliage;
+import net.minecraft.world.World;
 import net.minecraft.world.biome.BiomeGenBase;
 import net.minecraft.world.biome.SpawnListEntry;
 
@@ -26,6 +28,7 @@ public class BiomeGenCustom extends BiomeGenBase
 
     private boolean grassColorSet   = false;
     private boolean foliageColorSet = false;
+    public boolean isEBXL = false;
 
     public BiomeGenCustom(final int id, final String name) {
         super(id);
@@ -148,5 +151,10 @@ public class BiomeGenCustom extends BiomeGenBase
     @Override
     public String toString() {
         return "BiomeGenCustom of " + biomeName;
+    }
+    
+    @Override
+    public void decorate(World par1World, Random par2Random, int par3, int par4) {
+    	//Do nothing as this is handled elsewhere for vanilla biomes
     }
 }

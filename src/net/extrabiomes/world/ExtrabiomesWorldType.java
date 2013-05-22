@@ -74,7 +74,7 @@ public class ExtrabiomesWorldType extends WorldType
         ExtrabiomesXL.biomeManager.RegisterBiomesForWorldGen(worldTC);
         
         
-        final WorldConfig config = new WorldConfig(worldDirectory, worldTC, false);
+        final WorldConfig config = new WorldConfig(worldDirectory, worldTC, ExtrabiomesXL.biomeManager);
         worldTC.Init(world, config);
 
         WorldChunkManager chunkManager = null;

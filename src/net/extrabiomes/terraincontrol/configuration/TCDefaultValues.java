@@ -42,10 +42,15 @@ public enum TCDefaultValues implements TCSetting
 
     FrozenOcean(true),
 
-    NormalBiomes("Desert,Forest,Extreme Hills,Swampland,Plains,Taiga,Jungle", SettingsType.StringArray),
+    /*NormalBiomes("Desert,Forest,Extreme Hills,Swampland,Plains,Taiga,Jungle", SettingsType.StringArray),
     IceBiomes("Ice Plains", SettingsType.StringArray),
     IsleBiomes("MushroomIsland,Ice Mountains,DesertHills,ForestHills,TaigaHills,River,JungleHills", SettingsType.StringArray),
-    BorderBiomes("MushroomIslandShore,Beach,Extreme Hills Edge", SettingsType.StringArray),
+    BorderBiomes("MushroomIslandShore,Beach,Extreme Hills Edge", SettingsType.StringArray),*/
+    
+    NormalBiomes("Plains", SettingsType.StringArray),
+    IceBiomes("", SettingsType.StringArray),
+    IsleBiomes("", SettingsType.StringArray),
+    BorderBiomes("Beach",  SettingsType.StringArray),
 
     CustomBiomes("", SettingsType.StringArray),
 

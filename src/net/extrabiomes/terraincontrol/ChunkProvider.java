@@ -96,6 +96,10 @@ public class ChunkProvider implements IChunkProvider
         
         BlockSand.fallInstantly = true;
         world.LoadChunk(x, z);
+        
+        //Decorate custom chunks here
+        ExtraBiomesWorldGenerator.instance.decorate(ChunkProvider.loadChunk(x, z));
+        
         spawner.populate(x, z);
         BlockSand.fallInstantly = false;
         

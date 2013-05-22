@@ -9,12 +9,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
+import net.extrabiomes.generation.biomes.ExtraBiomesBiome;
 import net.extrabiomes.terraincontrol.DefaultBiome;
 import net.extrabiomes.terraincontrol.LocalBiome;
 import net.extrabiomes.terraincontrol.LocalWorld;
 import net.extrabiomes.terraincontrol.TerrainControl;
 import net.extrabiomes.terraincontrol.biomegenerators.BiomeGenerator;
 import net.extrabiomes.terraincontrol.customobjects.CustomObject;
+import net.extrabiomes.world.BiomeManager;
 
 
 public class WorldConfig extends ConfigFile
@@ -167,10 +169,167 @@ public class WorldConfig extends ConfigFile
 
     public long resourcesSeed;
     public LocalWorld world;
+    private ArrayList<Integer> ebxlIds = new ArrayList<Integer>();
+    
+    public WorldConfig(File settingsDir, LocalWorld world, BiomeManager biomeManager){
+    	
+    	this.SettingsDir = settingsDir;
+    	this.WorldName = world.getName();
+    	this.world = world;
+    	
+    	File settingsFile = new File(this.SettingsDir, TCDefaultValues.WorldSettingsName.stringValue());
+    	
+    	this.readSettingsFile(settingsFile);
+    	
+        this.readConfigSettings();
 
+        loadEBXLBiomes(biomeManager.Biomes);
+        
+        this.correctSettings();
+        
+        if (this.SettingsMode != ConfigMode.WriteDisable){
+            this.writeSettingsFile(settingsFile, (this.SettingsMode == ConfigMode.WriteAll));
+        }
+        
+        world.setHeightBits(this.worldHeightBits);
+
+        File BiomeFolder = new File(SettingsDir, TCDefaultValues.WorldBiomeConfigDirectoryName.stringValue());
+        if (!BiomeFolder.exists())
+        {
+            if (!BiomeFolder.mkdir())
+            {
+                TerrainControl.log(Level.WARNING, "Error creating biome configs directory, working with defaults");
+                return;
+            }
+        }
+        
+        
+        ArrayList<LocalBiome> localBiomes = new ArrayList<LocalBiome>(world.getDefaultBiomes());
+        
+        for(ExtraBiomesBiome b : biomeManager.Biomes){
+        	localBiomes.add(b.tcBiome);
+        }
+        
+        // Add custom biomes to world
+        for (String biomeName : this.CustomBiomes)
+        {
+            /*if (checkOnly)
+                localBio
+                mes.add(world.getNullBiome(biomeName));
+            else*/
+        	
+        	//Don't add ebxl biomes as these are already added
+        	
+        	if(!this.ebxlIds.contains(this.CustomBiomeIds.get(biomeName))){
+        		localBiomes.add(world.AddBiome(biomeName, this.CustomBiomeIds.get(biomeName)));
+        	}
+            
+        }
+        
+     // Build biome replace matrix
+        for (int i = 0; i < this.ReplaceMatrixBiomes.length; i++)
+            this.ReplaceMatrixBiomes[i] = (byte) i;
+
+        this.biomeConfigs = new BiomeConfig[world.getMaxBiomesCount()];
+        this.biomesCount = 0;
+
+        String LoadedBiomeNames = "";
+
+        for (LocalBiome localBiome : localBiomes)
+        {
+            BiomeConfig config = new BiomeConfig(BiomeFolder, localBiome, this);
+            /*if (checkOnly)
+                continue;*/
+
+            if (!config.ReplaceBiomeName.equals(""))
+            {
+                this.HaveBiomeReplace = true;
+                this.ReplaceMatrixBiomes[config.Biome.getId()] = (byte) world.getBiomeIdByName(config.ReplaceBiomeName);
+            }
+
+            if (this.NormalBiomes.contains(config.name))
+                this.normalBiomesRarity += config.BiomeRarity;
+            if (this.IceBiomes.contains(config.name))
+                this.iceBiomesRarity += config.BiomeRarity;
+
+            if (!this.BiomeConfigsHaveReplacement)
+                this.BiomeConfigsHaveReplacement = config.ReplaceCount > 0;
+            if (biomesCount != 0)
+                LoadedBiomeNames += ", ";
+            LoadedBiomeNames += localBiome.getName();
+            // Add biome to the biome array
+            if (this.biomeConfigs[localBiome.getId()] == null)
+            {
+                // Only if it won't overwrite another biome in the array
+                biomesCount++;
+            } else
+            {
+            	//TODO need to prevent this being shown for EBXL biomes
+                TerrainControl.log(Level.WARNING, "Duplicate biome id " + localBiome.getId() + " (" + this.biomeConfigs[localBiome.getId()].name + " and " + config.name + ")!");
+            }
+            this.biomeConfigs[localBiome.getCustomId()] = config;
+
+            /*if (this.biomeMode == TerrainControl.getBiomeModeManager().FROM_IMAGE)
+            {
+                if (this.biomeColorMap == null)
+                    this.biomeColorMap = new HashMap<Integer, Integer>();
+
+                try
+                {
+                    int color = Integer.decode(config.BiomeColor);
+                    if (color <= 0xFFFFFF)
+                        this.biomeColorMap.put(color, config.Biome.getId());
+                } catch (NumberFormatException ex)
+                {
+                    TerrainControl.log(Level.WARNING, "Wrong color in " + config.Biome.getName());
+                }
+
+            }*/
+        }
+        
+        //TODO temporary for testing
+        this.LandRarity = 100;
+
+        TerrainControl.log("Loaded biomes - " + LoadedBiomeNames);
+
+    	
+    }
+    
+    private void loadEBXLBiomes(ArrayList<ExtraBiomesBiome> biomes){
+    	
+    	for(ExtraBiomesBiome b : biomes){
+    		
+    		switch(b.biomeType){
+    			
+    		case Normal:
+    			this.NormalBiomes.add(b.biomeName);
+    			break;
+    			
+    		case Ice:
+    			this.IceBiomes.add(b.biomeName);
+    			break;
+    			
+    		case Isle:
+    			this.IsleBiomes.add(b.biomeName);
+    			break;
+    			
+    		case Border:
+    			this.BorderBiomes.add(b.biomeName);
+    			break;
+    			
+    		}
+    		
+    		this.CustomBiomes.add(b.biomeName);
+    		this.CustomBiomeIds.put(b.biomeName, b.biomeID);
+    		this.ebxlIds.add(b.biomeID);
+    	}
+    	
+    }
+    
+    
     public WorldConfig(File settingsDir, LocalWorld world, boolean checkOnly)
     {
-        this.SettingsDir = settingsDir;
+        /*this.SettingsDir = settingsDir;
         this.WorldName = world.getName();
         this.world = world;
 
@@ -215,6 +374,9 @@ public class WorldConfig extends ConfigFile
                 localBiomes.add(world.getNullBiome(biomeName));
             else
                 localBiomes.add(world.AddBiome(biomeName, this.CustomBiomeIds.get(biomeName)));
+            
+            //TODO Add biome type to determine which list this should be placed in
+            this.NormalBiomes.add(biomeName);
         }
 
         // Build biome replace matrix
@@ -277,7 +439,7 @@ public class WorldConfig extends ConfigFile
             }
         }
 
-        TerrainControl.log("Loaded biomes - " + LoadedBiomeNames);
+        TerrainControl.log("Loaded biomes - " + LoadedBiomeNames);*/
 
     }
 
@@ -904,6 +1066,11 @@ public class WorldConfig extends ConfigFile
         boolean first = true;
         for (String biome : CustomBiomes)
         {
+        	//Don't save EBXL biomes to the normal world config
+        	if(ebxlIds.contains(CustomBiomeIds.get(biome))){
+        		continue;
+        	}
+        	
             if (!first)
                 output += ",";
             first = false;

@@ -72,4 +72,9 @@ public class Biome implements LocalBiome
     public void setEffects(final BiomeConfig config) {
         biomeBase.setEffects(config);
     }
+    
+    @Override
+    public BiomeGenCustom getBiome() {
+    	return biomeBase;
+    }
 }

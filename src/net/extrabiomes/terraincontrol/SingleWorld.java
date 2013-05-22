@@ -7,6 +7,7 @@ import java.util.Random;
 
 import net.extrabiomes.generation.ExtraBiomesWorldGenerator;
 import net.extrabiomes.generation.biomes.ExtraBiomesBiome;
+import net.extrabiomes.generation.biomes.YellowStone;
 import net.extrabiomes.terraincontrol.DefaultBiome;
 import net.extrabiomes.terraincontrol.DefaultMaterial;
 import net.extrabiomes.terraincontrol.IBiomeManager;
@@ -139,7 +140,7 @@ public class SingleWorld implements LocalWorld
     public Biome AddVanillaBiome(int biomeID){
     	final BiomeGenBase oldBiome = BiomeGenBase.biomeList[biomeID];
         biomesToRestore[biomeID] = oldBiome;
-        final BiomeGenCustom custom = new BiomeGenCustom(oldBiome.biomeID, oldBiome.biomeName);
+        final BiomeGenCustom custom = (BiomeGenCustom) oldBiome;//new BiomeGenCustom(oldBiome.biomeID, oldBiome.biomeName);
         nextBiomeId++;
         custom.CopyBiome(oldBiome);
         final Biome biome = new Biome(custom);
@@ -148,6 +149,8 @@ public class SingleWorld implements LocalWorld
         biomeNames.put(biome.getName(), biome);
         return biome;
     }
+    
+    
     
     
     /**
@@ -165,7 +168,14 @@ public class SingleWorld implements LocalWorld
 
     @Override
     public LocalBiome AddBiome(final String name, final int id) {
-        final Biome biome = new Biome(new BiomeGenCustom(id, name));
+        final Biome biome;
+        
+        if(name == "Yellowstone"){
+        	biome = new Biome(new YellowStone(id, name));
+        }else{
+        	biome = new Biome(new BiomeGenCustom(id, name));
+        }
+        
         biomes[biome.getId()] = biome;
         biomeNames.put(biome.getName(), biome);
         return biome;

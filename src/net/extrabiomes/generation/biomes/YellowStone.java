@@ -25,8 +25,13 @@ public class YellowStone extends ExtraBiomesBiome{
 	}
 	
 	@Override
-	public void decorate(World par1World, Random par2Random, int par3, int par4) {
+	public void decorate(net.minecraft.world.chunk.Chunk chunk) {
 		
+	};
+	
+	@Override
+	public void decorate(World par1World, Random par2Random, int par3, int par4) {
+		int a = 1;
 	}
 	
 	

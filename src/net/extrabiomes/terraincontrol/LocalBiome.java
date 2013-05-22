@@ -31,4 +31,6 @@ public interface LocalBiome
     public abstract byte getSurfaceBlock();
 
     public abstract byte getGroundBlock();
+    
+    public abstract BiomeGenCustom getBiome();
 }
