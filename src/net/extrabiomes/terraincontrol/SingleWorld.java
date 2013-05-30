@@ -140,7 +140,10 @@ public class SingleWorld implements LocalWorld
     public Biome AddVanillaBiome(int biomeID){
     	final BiomeGenBase oldBiome = BiomeGenBase.biomeList[biomeID];
         biomesToRestore[biomeID] = oldBiome;
-        final BiomeGenCustom custom = (BiomeGenCustom) oldBiome;//new BiomeGenCustom(oldBiome.biomeID, oldBiome.biomeName);
+        if(oldBiome instanceof ExtraBiomesBiome){
+        	
+        }
+        final BiomeGenCustom custom = new BiomeGenCustom(oldBiome.biomeID, oldBiome.biomeName);
         nextBiomeId++;
         custom.CopyBiome(oldBiome);
         final Biome biome = new Biome(custom);

@@ -288,8 +288,7 @@ public class WorldConfig extends ConfigFile
         }
         
         //TODO temporary for testing
-        this.LandRarity = 100;
-
+     
         TerrainControl.log("Loaded biomes - " + LoadedBiomeNames);
 
     	

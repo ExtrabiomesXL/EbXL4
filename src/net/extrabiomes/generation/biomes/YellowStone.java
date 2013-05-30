@@ -21,7 +21,7 @@ public class YellowStone extends ExtraBiomesBiome{
 		
 		
 		//TODO make decorators static/stored somewhere
-		decorators.add(new DecoratorCount(new Mesa(), 1));		
+		//decorators.add(new DecoratorCount(new Mesa(), 1));		
 	}
 	
 	@Override

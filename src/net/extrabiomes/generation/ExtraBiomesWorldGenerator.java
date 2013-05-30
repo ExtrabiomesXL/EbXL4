@@ -6,6 +6,7 @@ import java.util.Random;
 import net.extrabiomes.generation.biomes.ExtraBiomesBiome;
 import net.extrabiomes.generation.layers.LayerManager;
 import net.extrabiomes.terraincontrol.BiomeGenCustom;
+import net.extrabiomes.terraincontrol.LocalBiome;
 import net.extrabiomes.terraincontrol.SingleWorld;
 import net.minecraft.block.Block;
 import net.minecraft.world.chunk.Chunk;
@@ -47,10 +48,10 @@ public class ExtraBiomesWorldGenerator {
 	}
 	
 	public void decorate(Chunk chunk){
-		BiomeGenCustom cornerBiome = world.getBiome(chunk.xPosition * 16, chunk.zPosition * 16).getBiome();
+		//BiomeGenCustom cornerBiome = world.getCalculatedBiome(chunk.xPosition * 16, chunk.zPosition * 16).getBiome();
 		
 
-		cornerBiome.decorate(world.getWorld(), random, chunk.xPosition * 16, chunk.zPosition * 16);
+		//cornerBiome.decorate(world.getWorld(), random, chunk.xPosition * 16, chunk.zPosition * 16);
 		
 		
 	}
