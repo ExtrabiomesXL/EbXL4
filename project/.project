@@ -18,12 +18,12 @@
 		<link>
 			<name>common</name>
 			<type>2</type>
-			<location>C:/Users/JLBShecky/Documents/GitHub/EbXL4/common</location>
+			<locationURI>PARENT-1-PROJECT_LOC/common</locationURI>
 		</link>
 		<link>
 			<name>resources</name>
 			<type>2</type>
-			<location>C:/Users/JLBShecky/Documents/GitHub/EbXL4/resources</location>
+			<locationURI>PARENT-1-PROJECT_LOC/resources</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
