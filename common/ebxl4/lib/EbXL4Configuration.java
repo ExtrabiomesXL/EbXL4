@@ -15,7 +15,30 @@ import ebxl4.lib.settingsupdates.TestSampleUpdate;
 
 public abstract class EbXL4Configuration {
   
-  public static void init(File configFile) {
+  public static File cfgFile;
+  
+  public static void fixWorldType(File configFile) {
+    Optional<Configuration> optionalConfig = Optional.absent();
+    
+    try {
+      optionalConfig = Optional.of(new Configuration(configFile));
+      final Configuration configuration = optionalConfig.get();
+      
+      Property worldId = configuration.get(Configuration.CATEGORY_GENERAL, "WorldID", GeneralSettings.worldID);
+      worldId.comment = "The world id that " + ModInfo.MOD_NAME + " uses to identify it's world type.";
+      
+      worldId.set(utils.getFreeWorldID());
+      LogHelper.info("The WorldType ID was set to %d, you can run Minecraft again and %s's world type will be available.", worldId.getInt(), ModInfo.MOD_NAME);
+    } catch (final NoFreeWorldIDsException e) {
+      LogHelper.log(Level.SEVERE, e, "You have to many mods that add world types installed for %s to add it's own world type.", ModInfo.MOD_NAME);
+    } catch (final Exception e) {
+      LogHelper.log(Level.SEVERE, e, "%s had had a problem patching its configuration", ModInfo.MOD_NAME);
+    } finally {
+      if (optionalConfig.isPresent() && optionalConfig.get().hasChanged()) optionalConfig.get().save();
+    }
+  }
+  
+  public static void init(File configFile) throws NoFreeWorldIDsException, WorldIDTakenException {
     Optional<Configuration> optionalConfig = Optional.absent();
     Configuration config;
     WorldType tmp;
@@ -34,19 +57,9 @@ public abstract class EbXL4Configuration {
         if(worldId.getInt() == -1) {
           if(WorldType.worldTypes[12] == null) {
             worldId.set(12);
-          } else {           
-            for(int i = 3; i < WorldType.worldTypes.length; i++) {
-              if(WorldType.worldTypes[i] == null) {
-                worldId.set(i);
-                LogHelper.info("The World ID was set to %d.", worldId.getInt());
-                break;
-              }
-            }
-            
-            if(worldId.getInt() == -1) {
-              LogHelper.severe("There are no free world types.");
-              throw new NoFreeWorldIDsException();
-            }
+          } else {
+            worldId.set(utils.getFreeWorldID());
+            LogHelper.info("The WorldType ID was set to %d.", worldId.getInt());
           }
         } else if(WorldType.worldTypes[worldId.getInt()] != null) {
           LogHelper.severe("Another Mod is using World ID %d. You will need to change %s's World ID, or the one used by the other mod.", worldId.getInt(), ModInfo.MOD_NAME);
