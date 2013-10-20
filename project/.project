@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>EbXL++</name>
+	<comment></comment>
+	<projects>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>org.eclipse.jdt.core.javabuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>org.eclipse.jdt.core.javanature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>common</name>
+			<type>2</type>
+			<location>C:/Users/JLBShecky/Documents/GitHub/EbXL4/common</location>
+		</link>
+		<link>
+			<name>resources</name>
+			<type>2</type>
+			<location>C:/Users/JLBShecky/Documents/GitHub/EbXL4/resources</location>
+		</link>
+	</linkedResources>
+</projectDescription>
