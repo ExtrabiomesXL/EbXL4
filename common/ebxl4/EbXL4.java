@@ -10,6 +10,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.network.NetworkMod;
+import cpw.mods.fml.common.network.NetworkRegistry;
 import ebxl4.api.APIVersion;
 import ebxl4.exceptions.InvalidAPIException;
 import ebxl4.exceptions.NoFreeWorldIDsException;
@@ -21,9 +22,11 @@ import ebxl4.lib.ModInfo;
 import ebxl4.proxy.CommonProxy;
 import ebxl4.world.EbXL4WorldType;
 import ebxl4.lib.LogHelper;
+import ebxl4.network.EbXL4Connection;
+import ebxl4.network.EbXL4Packet;
 
 @Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.MOD_VERSION)
-@NetworkMod(clientSideRequired = true, serverSideRequired = false)
+@NetworkMod(clientSideRequired = true, serverSideRequired = true, channels={"EbXL++channel"} , packetHandler=EbXL4Packet.class)
 public class EbXL4 {
   @Instance(ModInfo.MOD_ID)
   public static EbXL4         instance;
@@ -59,6 +62,7 @@ public class EbXL4 {
   @Mod.EventHandler
   public static void init(FMLInitializationEvent event) throws InstantiationException, IllegalAccessException {
     LogHelper.info("Initializing.");
+    NetworkRegistry.instance().registerConnectionHandler(new EbXL4Connection());
   }
   
   @Mod.EventHandler

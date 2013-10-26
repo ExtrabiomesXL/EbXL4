@@ -11,6 +11,6 @@ package ebxl4.api;
  *  annotation and have fore make sure you don't overwrite the EbXL++ API.
  */
 public class APIVersion {
-  public static final String version = "0.0.1.16";
+  public static final String version = "0.0.1.18";
   public static final String modId = "EbXL++";
 }

@@ -5,6 +5,7 @@ import java.util.List;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import ebxl4.gui.GuiCreateEbXL4World;
+import ebxl4.lib.GeneralSettings;
 import ebxl4.lib.LogHelper;
 import ebxl4.world.biome.EbXL4ChunkManager;
 import ebxl4.world.chunk.EbXL4ChunkProvider;
@@ -31,6 +32,7 @@ public class EbXL4WorldType extends WorldType {
   //Sets up the ChunkProvider. Use ChunkProviderHell for single biome worlds else use ChunkProviderGenerate or a custom provider.
   @Override
   public IChunkProvider getChunkGenerator(World world, String options) {
+    LogHelper.info("The EbXL++ worldoptions: " + options);
     return new EbXL4ChunkProvider(world, world.getSeed(), world.getWorldInfo().isMapFeaturesEnabled(), options); //
   }
 
@@ -61,5 +63,11 @@ public class EbXL4WorldType extends WorldType {
   public boolean isCustomizable()
   {
       return true;
+  }
+  
+  @SideOnly(Side.CLIENT)
+  public float getCloudHeight() {
+    return (GeneralSettings.overrideCloudHeight) ? GeneralSettings.cloudHeight : GeneralSettings.worldCloudHeight;
+    
   }
 }
