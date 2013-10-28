@@ -19,6 +19,9 @@ import net.minecraft.world.biome.WorldChunkManager;
 import net.minecraft.world.chunk.IChunkProvider;
 
 public class EbXL4WorldType extends WorldType {
+  private int cloudHeight = 222;
+  private int generationHeight = 255;
+  
   public EbXL4WorldType(int id, String name) {
     super(id, name);
   }
@@ -68,6 +71,21 @@ public class EbXL4WorldType extends WorldType {
   @SideOnly(Side.CLIENT)
   public float getCloudHeight() {
     return (GeneralSettings.overrideCloudHeight) ? GeneralSettings.cloudHeight : GeneralSettings.worldCloudHeight;
-    
+  }
+  
+  public void setWorldCloudHeight(int newHeight) {
+    this.cloudHeight = newHeight;
+  }
+  
+  public int getWorldCloudHeight(){
+    return this.cloudHeight;
+  }
+  
+  public void setGenerationHeight(int newHeight) {
+    this.generationHeight = newHeight;
+  }
+  
+  public int getGenerationHeight() {
+    return this.generationHeight;
   }
 }

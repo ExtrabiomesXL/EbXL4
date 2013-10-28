@@ -15,38 +15,46 @@ import net.minecraft.server.MinecraftServer;
 import cpw.mods.fml.common.network.IConnectionHandler;
 import cpw.mods.fml.common.network.IPacketHandler;
 import cpw.mods.fml.common.network.Player;
+import ebxl4.EbXL4;
 import ebxl4.lib.LogHelper;
 
 public class EbXL4Connection implements IPacketHandler, IConnectionHandler {
 
   @Override
   public void playerLoggedIn(Player player, NetHandler netHandler, INetworkManager manager) {
-    String k = "This is a test";
+    if(((EntityPlayer) player).worldObj.getWorldInfo().getTerrainType() == EbXL4.worldType) {
     
-    LogHelper.info("Player Logged In.");
-    
-    ByteArrayOutputStream bytearray = new ByteArrayOutputStream(8);
-    DataOutputStream outputStream = new DataOutputStream(bytearray);
-    
-    try {
-      outputStream.writeUTF(k);
-    } catch (Exception e) {}
-    
-    
-    //((EntityPlayer) player)
-    
-    
-    Packet250CustomPayload packet = new Packet250CustomPayload();
-    packet.channel = "EbXL++channel";
-    packet.data = bytearray.toByteArray();
-    packet.length = bytearray.size();
-    
-    manager.addToSendQueue(packet);
-    
-    //netHandler.
-    
-    //((NetServerHandler)netHandler).handleCustomPayload(packet);
-    
+      String k = "This is a test";
+      
+      //((EntityPlayer) player).worldObj.getWorldInfo().getTerrainType();
+      
+      LogHelper.info("Player Logged In. Worldgenerator options: %s", ((EntityPlayer) player).worldObj.getWorldInfo().getGeneratorOptions());
+      
+      ByteArrayOutputStream bytearray = new ByteArrayOutputStream(64);
+      DataOutputStream outputStream = new DataOutputStream(bytearray);
+      
+      try {
+        
+        outputStream.writeFloat(((EntityPlayer) player).worldObj.getWorldInfo().getTerrainType().getCloudHeight());
+      } catch (Exception e) {}
+      
+      
+      //((EntityPlayer) player)
+      
+      
+      Packet250CustomPayload packet = new Packet250CustomPayload();
+      packet.channel = "EbXL++channel";
+      packet.data = bytearray.toByteArray();
+      packet.length = bytearray.size();
+      
+      manager.addToSendQueue(packet);
+      
+      //netHandler.
+      
+      //((NetServerHandler)netHandler).handleCustomPayload(packet);
+    } else {
+      LogHelper.info("Player Logged In. Not an EbXL World");
+    }
     
   }
 
@@ -65,9 +73,7 @@ public class EbXL4Connection implements IPacketHandler, IConnectionHandler {
   public void connectionClosed(INetworkManager manager) {}
 
   @Override
-  public void clientLoggedIn(NetHandler clientHandler, INetworkManager manager, Packet1Login login) {
-    LogHelper.info("Client Logged In.");
-  }
+  public void clientLoggedIn(NetHandler clientHandler, INetworkManager manager, Packet1Login login) {}
 
   @Override
   public void onPacketData(INetworkManager manager, Packet250CustomPayload packet, Player player) {}

@@ -3,6 +3,8 @@ package ebxl4.world.chunk;
 import java.util.List;
 import java.util.Random;
 
+import ebxl4.world.EbXL4WorldType;
+import ebxl4.world.noise.SimplexNoise;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.IProgressUpdate;
 import net.minecraft.world.ChunkPosition;
@@ -16,10 +18,21 @@ public class EbXL4ChunkProvider implements IChunkProvider {
   
   private World worldObj;
   private Random random;
+  private short[] blockIDs;
+  private byte[] metaDataIDs;
+  private int generationHeight;
+  
+  private SimplexNoise layer1;
+  
   
   public EbXL4ChunkProvider(World world, long seed, boolean structure, String options) {
     this.worldObj = world;
     this.random = new Random(seed);
+    this.generationHeight = ((EbXL4WorldType)world.getWorldInfo().getTerrainType()).getGenerationHeight();
+    this.blockIDs = new short[256 * this.generationHeight];
+    this.metaDataIDs = new byte[256 * this.generationHeight];
+        
+    this.layer1 = new SimplexNoise(random.nextLong());
   }
 
   @Override
@@ -29,24 +42,71 @@ public class EbXL4ChunkProvider implements IChunkProvider {
 
   @Override
   public Chunk provideChunk(int chunkX, int chunkZ) {
-    // TODO Auto-generated method stub
-    //byte[] data = new byte[65536];
-    
-    //TallChunk tallchunk = new TallChunk(this.worldObj, data, chunkX, chunkZ);
-    Chunk chunk = new Chunk(this.worldObj, chunkX, chunkZ);
-        
-    ExtendedBlockStorage extendedblockstorage = chunk.getBlockStorageArray()[0];
-    
-    if (extendedblockstorage == null) {
-        extendedblockstorage = new ExtendedBlockStorage(0, !this.worldObj.provider.hasNoSky);
-        chunk.getBlockStorageArray()[0] = extendedblockstorage;
-    }
-    
-    for(int x = 0; x < 16; ++x) {
+    // Fill the world chunk provider
+    for(int y = 0; y < this.generationHeight; ++y) {
       for(int z = 0; z < 16; ++z) {
-        extendedblockstorage.setExtBlockID(x, 0, z, 2);
+        for(int x = 0; x < 16; x++) {
+          int idOffset = y << 8 | z << 4 | x;
+          
+          // Block Metadata
+          metaDataIDs[idOffset] = 0;
+          
+          if(y == 0) {
+            // Bedrock
+            blockIDs[idOffset] = 7;
+          } else if(y < 15) {
+            // Stone
+            blockIDs[idOffset] = 1;
+          } else if(y == 15) {
+            // Get the noise
+            int levels = 8;           // How many itterations we should use
+            double rate = 2.125D;     // Factor or rate
+            double detail = 5120D;    // How zoomed in we should get
+            double fraction = 0.76D;  // How much each layer counts towards the total
+            
+            // Starting constants
+            double pow = 1D;
+            double val = 0D;
+            
+            for(int j = 1; j < levels; j++) {
+              val += layer1.noise(((chunkX << 4) | x) / detail, ((chunkZ << 4) | z) / detail) * pow;
+              detail /= rate;
+              pow *= fraction;
+            }
+            val += layer1.noise(((chunkX << 4) | x) / detail, ((chunkZ << 4) | z) / detail) * pow;
+
+            // Grass
+            //blockIDs[idOffset] = 159;
+            if(val > 0.0D) {
+              blockIDs[idOffset] = 2;
+            } else {
+              blockIDs[idOffset] = 9;
+            }
+          } else {
+            // Air
+            blockIDs[idOffset] = 0;
+          }
+          
+        }
       }
     }
+    
+    
+    //TallChunk tallchunk = new TallChunk(this.worldObj, data, chunkX, chunkZ);
+    Chunk chunk = new Chunk(this.worldObj, blockIDs, metaDataIDs, chunkX, chunkZ);
+        
+    //ExtendedBlockStorage extendedblockstorage = chunk.getBlockStorageArray()[0];
+    
+    //if (extendedblockstorage == null) {
+    //    extendedblockstorage = new ExtendedBlockStorage(0, !this.worldObj.provider.hasNoSky);
+    //    chunk.getBlockStorageArray()[0] = extendedblockstorage;
+    //}
+    
+    //for(int x = 0; x < 16; ++x) {
+    //  for(int z = 0; z < 16; ++z) {
+    //    extendedblockstorage.setExtBlockID(x, 0, z, 2);
+    //  }
+    //}
     
     //chunk.generateHeightMap();
     

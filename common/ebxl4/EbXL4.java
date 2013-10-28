@@ -69,7 +69,7 @@ public class EbXL4 {
   public static void postInit(FMLPostInitializationEvent event) throws WorldIDOverriddenException {
     LogHelper.info("Doing post initilization stuff.");
     // Check to make sure that no other mods overwrote the world type
-    if(WorldType.worldTypes[GeneralSettings.worldID].getWorldTypeName() != "EbXL++") {
+    if(WorldType.worldTypes[GeneralSettings.worldID] != worldType) {
       LogHelper.severe("%s's World ID %d was overridden by another mod.", ModInfo.MOD_NAME, GeneralSettings.worldID);
       EbXL4Configuration.fixWorldType(EbXL4Configuration.cfgFile);
       throw new WorldIDOverriddenException();
