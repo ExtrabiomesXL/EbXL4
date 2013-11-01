@@ -1,9 +1,19 @@
 package ebxl4.world.chunk;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+import argo.jdom.JdomParser;
+import argo.jdom.JsonNode;
+import argo.jdom.JsonRootNode;
+import argo.jdom.JsonStringNode;
+import ebxl4.lib.LogHelper;
 import ebxl4.world.EbXL4WorldType;
+import ebxl4.world.layer.BaseLandLayerGenerator;
+import ebxl4.world.layer.IterativeLandLayerGenerator;
+import ebxl4.world.layer.SimpleLandLayerGenerator;
 import ebxl4.world.noise.SimplexNoise;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.util.IProgressUpdate;
@@ -16,13 +26,16 @@ import net.minecraft.world.chunk.storage.ExtendedBlockStorage;
 
 public class EbXL4ChunkProvider implements IChunkProvider {
   
+  private static JdomParser parser = new JdomParser();
+  
   private World worldObj;
   private Random random;
   private short[] blockIDs;
   private byte[] metaDataIDs;
   private int generationHeight;
   
-  private SimplexNoise layer1;
+  //private SimplexNoise layer1;
+  private BaseLandLayerGenerator land;
   
   
   public EbXL4ChunkProvider(World world, long seed, boolean structure, String options) {
@@ -31,8 +44,48 @@ public class EbXL4ChunkProvider implements IChunkProvider {
     this.generationHeight = ((EbXL4WorldType)world.getWorldInfo().getTerrainType()).getGenerationHeight();
     this.blockIDs = new short[256 * this.generationHeight];
     this.metaDataIDs = new byte[256 * this.generationHeight];
+    
+    try {
+      //JsonRootNode root = parser.parse(options);
+      JsonRootNode root = parser.parse("{\"landLayer\":{\"type\":\"iterative\"}}");
+      
+      if(root.hasFields()) {
         
-    this.layer1 = new SimplexNoise(random.nextLong());
+        // Land layer config settings
+        if(root.isNode("landLayer")) {
+          if(root.isStringValue("landLayer", "type")) {
+            if(root.getStringValue("landLayer", "type").equals("simple")) {
+              land = new SimpleLandLayerGenerator(this.random, root);
+              LogHelper.info("Simple Type");
+            } else if(root.getStringValue("landLayer", "type").equals("iterative")) {
+              land = new IterativeLandLayerGenerator(this.random, root);
+              LogHelper.info("Iterative Type");
+            } else {
+              land = new SimpleLandLayerGenerator(this.random, root);
+              LogHelper.info("Unknow Type");
+            }
+          } else {
+            land = new SimpleLandLayerGenerator(this.random, root);
+            LogHelper.info("Not String");
+          }
+        } else {
+          land = new SimpleLandLayerGenerator(this.random);
+          LogHelper.info("No Type");
+        }
+        
+        
+      } else {
+        // Initialize with default settings
+        land = new SimpleLandLayerGenerator(this.random);
+        LogHelper.info("Using default settings.");
+      }
+      
+      
+    } catch (Exception e) {
+      // Initialize with default settings
+      land = new SimpleLandLayerGenerator(this.random);
+      LogHelper.info("Using default settings.");
+    }
   }
 
   @Override
@@ -58,26 +111,11 @@ public class EbXL4ChunkProvider implements IChunkProvider {
             // Stone
             blockIDs[idOffset] = 1;
           } else if(y == 15) {
-            // Get the noise
-            int levels = 8;           // How many itterations we should use
-            double rate = 2.125D;     // Factor or rate
-            double detail = 5120D;    // How zoomed in we should get
-            double fraction = 0.76D;  // How much each layer counts towards the total
+            //double val = land.Generate((chunkX << 4) | x, (chunkZ << 4) | z);
             
-            // Starting constants
-            double pow = 1D;
-            double val = 0D;
-            
-            for(int j = 1; j < levels; j++) {
-              val += layer1.noise(((chunkX << 4) | x) / detail, ((chunkZ << 4) | z) / detail) * pow;
-              detail /= rate;
-              pow *= fraction;
-            }
-            val += layer1.noise(((chunkX << 4) | x) / detail, ((chunkZ << 4) | z) / detail) * pow;
-
             // Grass
             //blockIDs[idOffset] = 159;
-            if(val > 0.0D) {
+            if(land.Generate((chunkX << 4) | x, (chunkZ << 4) | z)) {
               blockIDs[idOffset] = 2;
             } else {
               blockIDs[idOffset] = 9;
@@ -94,19 +132,6 @@ public class EbXL4ChunkProvider implements IChunkProvider {
     
     //TallChunk tallchunk = new TallChunk(this.worldObj, data, chunkX, chunkZ);
     Chunk chunk = new Chunk(this.worldObj, blockIDs, metaDataIDs, chunkX, chunkZ);
-        
-    //ExtendedBlockStorage extendedblockstorage = chunk.getBlockStorageArray()[0];
-    
-    //if (extendedblockstorage == null) {
-    //    extendedblockstorage = new ExtendedBlockStorage(0, !this.worldObj.provider.hasNoSky);
-    //    chunk.getBlockStorageArray()[0] = extendedblockstorage;
-    //}
-    
-    //for(int x = 0; x < 16; ++x) {
-    //  for(int z = 0; z < 16; ++z) {
-    //    extendedblockstorage.setExtBlockID(x, 0, z, 2);
-    //  }
-    //}
     
     //chunk.generateHeightMap();
     

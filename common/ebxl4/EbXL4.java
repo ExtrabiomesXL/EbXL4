@@ -2,6 +2,9 @@ package ebxl4;
 
 import java.io.File;
 
+import net.minecraft.command.ICommandManager;
+import net.minecraft.command.ServerCommandManager;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.world.WorldType;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -9,6 +12,7 @@ import cpw.mods.fml.common.Mod.Instance;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
 import cpw.mods.fml.common.network.NetworkMod;
 import cpw.mods.fml.common.network.NetworkRegistry;
 import ebxl4.api.APIVersion;
@@ -16,6 +20,7 @@ import ebxl4.exceptions.InvalidAPIException;
 import ebxl4.exceptions.NoFreeWorldIDsException;
 import ebxl4.exceptions.WorldIDOverriddenException;
 import ebxl4.exceptions.WorldIDTakenException;
+import ebxl4.lib.EBXLCommandHandler2;
 import ebxl4.lib.EbXL4Configuration;
 import ebxl4.lib.GeneralSettings;
 import ebxl4.lib.ModInfo;
@@ -24,6 +29,7 @@ import ebxl4.world.EbXL4WorldType;
 import ebxl4.lib.LogHelper;
 import ebxl4.network.EbXL4Connection;
 import ebxl4.network.EbXL4Packet;
+import ebxl4.lib.EBXLCommandHandler;
 
 @Mod(modid = ModInfo.MOD_ID, name = ModInfo.MOD_NAME, version = ModInfo.MOD_VERSION)
 @NetworkMod(clientSideRequired = true, serverSideRequired = true, channels={"EbXL++channel"} , packetHandler=EbXL4Packet.class)
@@ -74,5 +80,16 @@ public class EbXL4 {
       EbXL4Configuration.fixWorldType(EbXL4Configuration.cfgFile);
       throw new WorldIDOverriddenException();
     }
+  }
+  
+  @Mod.EventHandler
+  public void serverStart(FMLServerStartingEvent event) {
+    
+    MinecraftServer server = MinecraftServer.getServer(); //Gets current server
+    ICommandManager command = server.getCommandManager(); //Gets the command manager to use for server
+    ServerCommandManager serverCommand = ((ServerCommandManager) command); //Turns it into another form to use
+    
+    serverCommand.registerCommand(new EBXLCommandHandler());
+    serverCommand.registerCommand(new EBXLCommandHandler2());
   }
 }
